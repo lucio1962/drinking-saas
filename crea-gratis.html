@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crea il Tuo Sito Pub Gratis - Drinking SaaS</title>
+    <title>Crea Sito Pub Gratis - Drinking SaaS</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -13,10 +13,14 @@
             --light: #F5F5DC;
         }
         
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
             background: var(--light);
             color: var(--dark);
             line-height: 1.6;
@@ -29,6 +33,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .logo {
@@ -51,6 +56,7 @@
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .btn-nav:hover {
@@ -59,17 +65,20 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 2rem auto;
             padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
         }
         
         .creation-form {
             background: white;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 2px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--primary);
         }
         
         .form-group {
@@ -85,116 +94,335 @@
         
         input, textarea, select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
         
         input:focus, textarea:focus, select:focus {
             border-color: var(--secondary);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
         }
         
         .btn-primary {
             background: var(--secondary);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
         }
         
         .btn-primary:hover {
             background: var(--accent);
             color: var(--dark);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .preview-section {
             background: var(--dark);
             color: white;
             padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            text-align: center;
+            border-radius: 15px;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
         }
         
         .beer-item {
             background: rgba(255,255,255,0.1);
             padding: 1rem;
             margin: 1rem 0;
-            border-radius: 5px;
+            border-radius: 8px;
             border-left: 4px solid var(--accent);
         }
         
-        .demo-banner {
+        .ai-assistant {
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             color: var(--dark);
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 10px;
-            text-align: center;
             margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        /* CHATBOT STYLES */
+        .chatbot-launcher {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--accent);
+            color: var(--dark);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: 3px solid var(--dark);
+        }
+        
+        .chatbot-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 25px;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+            border: 3px solid var(--dark);
+            overflow: hidden;
+        }
+        
+        .chatbot-header {
+            background: var(--dark);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            padding: 1rem;
+            border-radius: 18px;
+            max-width: 85%;
+            line-height: 1.4;
+            position: relative;
+            animation: messageAppear 0.3s ease-out;
+        }
+        
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bot-message {
+            background: var(--light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: var(--accent);
+            color: var(--dark);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .quick-reply {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quick-reply:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 1.2rem;
+            border-top: 2px solid var(--light);
+            background: white;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: var(--accent);
+        }
+        
+        .chatbot-send {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chatbot-send:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="logo">DRINKING SaaS</div>
         <div class="nav-buttons">
-            <a href="index.html" class="btn-nav">← Torna alla Vendita</a>
-            <a href="https://lucio1962.github.io/drinking-pub-2024/" 
-               target="_blank" 
-               class="btn-nav">
-               🍺 Vedi Demo
-            </a>
+            <a href="index.html" class="btn-nav">← Torna alla Home</a>
+            <a href="https://lucio1962.github.io/drinking-pub-2024/" target="_blank" class="btn-nav">🍺 Vedi Demo</a>
         </div>
     </header>
 
     <div class="container">
-        <div class="demo-banner">
-            <h3>🎯 Prima di creare, guarda la Demo Funzionante!</h3>
-            <p>Vedi come funziona il sistema di ordini con il nostro pub esempio</p>
-            <a href="https://lucio1962.github.io/drinking-pub-2024/" 
-               target="_blank" 
-               class="btn-primary" 
-               style="background: white; color: var(--dark); margin: 10px;">
-               🍺 APRI DEMO LIVE
-            </a>
-        </div>
-        
-        <h1 style="text-align: center; color: var(--primary);">Crea il Sito del Tuo Pub Gratis</h1>
-        <p style="text-align: center; margin-bottom: 2rem;">Compila il form per generare il tuo sito pub personalizzato</p>
-        
+        <!-- Main Form -->
         <div class="creation-form">
+            <div class="ai-assistant">
+                <h3>🆓 Creazione Sito Pub Gratis</h3>
+                <p>Compila il form per creare il tuo sito base. Se vuoi assistenza personalizzata, chatta con Arturo! 🤖</p>
+                <a href="crea-ai.html" class="btn-primary" style="background: white; color: var(--dark); margin-top: 1rem;">
+                    💬 Passa all'AI Assistito - €9,90
+                </a>
+            </div>
+            
             <form id="pubForm">
                 <div class="form-group">
-                    <label for="pubName">Nome del tuo Pub *</label>
+                    <label for="pubName">🏠 Nome del tuo Pub *</label>
                     <input type="text" id="pubName" name="pubName" required placeholder="Es: The Old Tavern">
                 </div>
                 
                 <div class="form-group">
-                    <label for="pubDescription">Descrizione del Pub</label>
-                    <textarea id="pubDescription" name="pubDescription" rows="3" placeholder="Descrivi la tua birreria..."></textarea>
+                    <label for="pubDescription">📝 Descrizione del Pub</label>
+                    <textarea id="pubDescription" name="pubDescription" rows="3" placeholder="Descrivi la tua birreria, l'atmosfera, le specialità..."></textarea>
                 </div>
                 
                 <div class="form-group">
-                    <label for="whatsappNumber">Numero WhatsApp per Ordini *</label>
+                    <label for="whatsappNumber">📱 Numero WhatsApp per Ordini *</label>
                     <input type="tel" id="whatsappNumber" name="whatsappNumber" required placeholder="Es: +39 123 456 7890">
                 </div>
                 
                 <div class="form-group">
-                    <label for="pubAddress">Indirizzo del Pub</label>
+                    <label for="pubAddress">📍 Indirizzo del Pub</label>
                     <input type="text" id="pubAddress" name="pubAddress" placeholder="Es: Via Roma 123, Milano">
                 </div>
                 
-                <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">Menu Birre</h3>
+                <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; margin-top: 2rem;">🍺 Menu Birre</h3>
                 
                 <div class="form-group">
                     <label for="beer1">Birra 1 *</label>
@@ -211,71 +439,254 @@
                     <input type="text" id="beer3" name="beer3" placeholder="Es: Stout Scura - €6,00">
                 </div>
                 
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button type="submit" class="btn-primary">CREA IL MIO SITO GRATIS</button>
+                <div class="form-group">
+                    <label for="beer4">Birra 4</label>
+                    <input type="text" id="beer4" name="beer4" placeholder="Es: Weissbier - €5,50">
                 </div>
+                
+                <button type="submit" class="btn-primary">🚀 CREA IL MIO SITO GRATIS</button>
+                
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    Il sito sarà pronto entro 48 ore. Riceverai una email di conferma.
+                </p>
             </form>
         </div>
         
+        <!-- Preview Section -->
         <div class="preview-section">
-            <h3>Anteprima del Tuo Sito Pub</h3>
-            <p>Il tuo sito avrà questo aspetto professionale:</p>
+            <h3 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">Anteprima Live</h3>
+            <p style="text-align: center; margin-bottom: 1.5rem; opacity: 0.8;">Come vedranno i tuoi clienti:</p>
             
-            <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
-                <h4 id="previewName" style="color: var(--accent); margin: 0;">The Old Tavern</h4>
-                <p id="previewDesc" style="margin: 0.5rem 0;">Birreria artigianale con specialità locali</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px;">
+                <h4 id="previewName" style="color: var(--accent); margin: 0; text-align: center;">The Old Tavern</h4>
+                <p id="previewDesc" style="margin: 0.5rem 0; text-align: center; opacity: 0.9;">Birreria artigianale con specialità locali</p>
                 
-                <div class="beer-item">
-                    <strong id="previewBeer1">IPA Artigianale - €5,00</strong>
-                </div>
-                <div class="beer-item">
-                    <strong id="previewBeer2">Lager Chiara - €4,00</strong>
-                </div>
-                <div class="beer-item">
-                    <strong id="previewBeer3">Stout Scura - €6,00</strong>
+                <div style="margin: 1.5rem 0;">
+                    <div class="beer-item">
+                        <strong id="previewBeer1">IPA Artigianale - €5,00</strong>
+                    </div>
+                    <div class="beer-item">
+                        <strong id="previewBeer2">Lager Chiara - €4,00</strong>
+                    </div>
+                    <div class="beer-item">
+                        <strong id="previewBeer3">Stout Scura - €6,00</strong>
+                    </div>
+                    <div class="beer-item">
+                        <strong id="previewBeer4">Weissbier - €5,50</strong>
+                    </div>
                 </div>
                 
-                <p style="margin-top: 1rem;">
-                    <strong>Ordina ora su WhatsApp:</strong><br>
-                    <span id="previewWhatsApp">+39 123 456 7890</span>
+                <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                    <p style="margin: 0; font-size: 0.9rem;">📱 Ordina su WhatsApp:</p>
+                    <strong id="previewWhatsApp" style="color: var(--accent);">+39 123 456 7890</strong>
+                </div>
+                
+                <p id="previewAddress" style="text-align: center; margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+                    Via Roma 123, Milano
+                </p>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.2); border-radius: 8px; text-align: center;">
+                <p style="margin: 0; font-size: 0.9rem;">
+                    <strong>💡 Suggerimento di Arturo:</strong><br>
+                    Aggiungi foto delle tue birre per aumentare le ordinazioni del 30%!
                 </p>
             </div>
         </div>
     </div>
 
+    <!-- Chatbot Launcher -->
+    <div class="chatbot-launcher" id="chatbotLauncher">
+        💬
+    </div>
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <div class="chatbot-avatar">A</div>
+                <div>
+                    <strong>Arturo</strong>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Assistente AI Drinking</div>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">×</button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <strong>Ciao! Sono Arturo 🍺</strong><br>
+                Vedo che stai creando il sito del tuo pub. Posso aiutarti con consigli su menu, prezzi o design?
+            </div>
+            
+            <div class="quick-replies">
+                <div class="quick-reply" onclick="sendQuickReply('Quali birre consigli nel menu?')">Consigli birre</div>
+                <div class="quick-reply" onclick="sendQuickReply('Come impostare i prezzi?')">Prezzi birre</div>
+                <div class="quick-reply" onclick="sendQuickReply('Voglio passare alla versione AI')">Versione AI</div>
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <span>Arturo sta scrivendo</span>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Chiedimi consigli sul tuo pub...">
+            <button class="chatbot-send" id="chatbotSend">➤</button>
+        </div>
+    </div>
+
     <script>
-        // Aggiorna l'anteprima in tempo reale
+        // Real-time Preview
         document.getElementById('pubForm').addEventListener('input', function(e) {
             const field = e.target.id;
             const value = e.target.value;
             
-            switch(field) {
-                case 'pubName':
-                    document.getElementById('previewName').textContent = value || 'The Old Tavern';
-                    break;
-                case 'pubDescription':
-                    document.getElementById('previewDesc').textContent = value || 'Birreria artigianale con specialità locali';
-                    break;
-                case 'whatsappNumber':
-                    document.getElementById('previewWhatsApp').textContent = value || '+39 123 456 7890';
-                    break;
-                case 'beer1':
-                    document.getElementById('previewBeer1').textContent = value || 'IPA Artigianale - €5,00';
-                    break;
-                case 'beer2':
-                    document.getElementById('previewBeer2').textContent = value || 'Lager Chiara - €4,00';
-                    break;
-                case 'beer3':
-                    document.getElementById('previewBeer3').textContent = value || 'Stout Scura - €6,00';
-                    break;
+            const previewMap = {
+                'pubName': 'previewName',
+                'pubDescription': 'previewDesc',
+                'whatsappNumber': 'previewWhatsApp',
+                'pubAddress': 'previewAddress',
+                'beer1': 'previewBeer1',
+                'beer2': 'previewBeer2',
+                'beer3': 'previewBeer3',
+                'beer4': 'previewBeer4'
+            };
+            
+            if (previewMap[field]) {
+                document.getElementById(previewMap[field]).textContent = value || 
+                    (field.startsWith('beer') ? 'Birra ' + field.slice(-1) + ' - €0,00' : 
+                     field === 'pubName' ? 'The Old Tavern' :
+                     field === 'pubDescription' ? 'Birreria artigianale con specialità locali' :
+                     field === 'whatsappNumber' ? '+39 123 456 7890' :
+                     field === 'pubAddress' ? 'Via Roma 123, Milano' : '');
             }
         });
 
-        // Gestione invio form
+        // Form Submission
         document.getElementById('pubForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Ottimo! Il tuo sito pub è in fase di creazione. Ti contatteremo via email entro 24 ore.');
+            const pubName = document.getElementById('pubName').value;
+            alert(`Perfetto ${pubName}! Il tuo sito pub è in fase di creazione. Riceverai una email di conferma entro 48 ore. 🍺`);
         });
+
+        // Chatbot Elements
+        const chatbotLauncher = document.getElementById('chatbotLauncher');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Toggle Chatbot
+        chatbotLauncher.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        // Send Message
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                chatbotInput.value = '';
+                
+                typingIndicator.style.display = 'flex';
+                
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                    aiResponse(message);
+                }, 1500);
+            }
+        }
+
+        // Quick Reply
+        function sendQuickReply(reply) {
+            addMessage(reply, 'user');
+            
+            typingIndicator.style.display = 'flex';
+            
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                aiResponse(reply);
+            }, 1000);
+        }
+
+        // Add Message to Chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // AI Responses for Pub Creation
+        function aiResponse(userMessage) {
+            let response = '';
+            
+            if (userMessage.toLowerCase().includes('consigli') || userMessage.toLowerCase().includes('birre')) {
+                response = "Per un pub di successo ti consiglio:\n\n🍻 **Birre Must-Have**:\n• IPA Artigianale (€5-€7)\n• Lager Chiara (€4-€5)  \n• Stout Scura (€6-€8)\n• Weissbier (€5-€6)\n\n🎯 **Tips**: Inizia con 4-5 birre di qualità invece di tante opzioni mediocri!";
+            } else if (userMessage.toLowerCase().includes('prezzi') || userMessage.toLowerCase().includes('costo')) {
+                response = "Ecco una guida prezzi per le birre:\n\n💰 **Fascia Prezzi Consigliata**:\n• Birre base: €4-€5\n• Specialità: €5-€7\n• Premium: €7-€10\n• Limited Edition: €10+\n\n💡 I clienti percepiscono qualità con prezzi leggermente sopra la media!";
+            } else if (userMessage.toLowerCase().includes('ai') || userMessage.toLowerCase().includes('premium')) {
+                response = "Ottima scelta! Con la versione AI a €9,90:\n\n🤖 **Io ti assisto personalmente**\n🎨 **Design ottimizzato automaticamente**\n⚡ **Sito pronto in 24 ore**\n📞 **Assistenza prioritaria**\n\nVuoi che ti spiego meglio i vantaggi?";
+                
+                setTimeout(() => {
+                    const quickReplies = document.createElement('div');
+                    quickReplies.className = 'quick-replies';
+                    quickReplies.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Si, voglio la versione AI')">Si, voglio AI</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Mostrami le differenze')">Confronta versioni</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Come funziona il pagamento?')">Pagamento</div>
+                    `;
+                    chatbotMessages.appendChild(quickReplies);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 100);
+            } else if (userMessage.toLowerCase().includes('differenze') || userMessage.toLowerCase().includes('confronto')) {
+                response = "**CONFRONTO VERSIONI**:\n\n🆓 **GRATIS**:\n• Sito base\n• Setup in 48h\n• Assistenza email\n\n🤖 **AI PREMIUM (€9,90)**:\n• Assistente AI personale (io! 😊)\n• Design ottimizzato\n• Setup in 24h\n• Supporto prioritario\n• Consigli personalizzati\n\nLa differenza è nell'esperienza completa!";
+            } else if (userMessage.toLowerCase().includes('pagamento') || userMessage.toLowerCase().includes('paga')) {
+                response = "Il pagamento è semplice e sicuro:\n\n💳 **Metodi accettati**:\n• Carta di credito/debito\n• PayPal\n• Satispay\n\n🔒 **Garanzia**: 30 giorni soddisfatto o rimborsato!\n\nVuoi procedere con l'acquisto?";
+            } else {
+                response = "Posso aiutarti con:\n• Consigli sul menu birre\n• Guide prezzi\n• Ottimizzazione del sito\n• Passaggio alla versione AI\n\nCosa ti interessa di più?";
+            }
+            
+            addMessage(response, 'bot');
+        }
+
+        // Event Listeners
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Auto-suggest AI upgrade
+        setTimeout(() => {
+            if (!localStorage.getItem('ai_suggested')) {
+                addMessage("💡 **Suggerimento di Arturo**: Con la versione AI a €9,90, posso creare automaticamente il sito perfetto per te basato sul tipo di pub e clientela! Vuoi saperne di più?", 'bot');
+                localStorage.setItem('ai_suggested', 'true');
+                
+                setTimeout(() => {
+                    const quickReplies = document.createElement('div');
+                    quickReplies.className = 'quick-replies';
+                    quickReplies.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Si, dimmi della versione AI')">Info versione AI</div>
+                        <div class="quick-reply" onclick="sendQuickReply('No, continuo con il gratis')">Resto sul gratis</div>
+                    `;
+                    chatbotMessages.appendChild(quickReplies);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 500);
+            }
+        }, 30000);
     </script>
 </body>
 </html>
