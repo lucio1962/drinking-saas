@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clona il Sito Demo - Crea il Tuo Sito Pub - Drinking SaaS</title>
+    <title>🧪 TEST - Clona drinking-pub-2024 - Drinking SaaS</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -24,6 +24,15 @@
             background: var(--light);
             color: var(--dark);
             line-height: 1.6;
+        }
+
+        .test-banner {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
         
         .header {
@@ -78,14 +87,20 @@
         }
         
         .price-tag {
-            background: var(--accent);
-            color: var(--dark);
+            background: #4CAF50;
+            color: white;
             padding: 1rem 2rem;
             border-radius: 25px;
             font-size: 1.5rem;
             font-weight: bold;
             display: inline-block;
             margin: 1rem 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-right: 1rem;
         }
         
         .container {
@@ -177,8 +192,8 @@
         }
         
         .btn-clone {
-            background: var(--accent);
-            color: var(--dark);
+            background: #4CAF50;
+            color: white;
             padding: 18px 45px;
             border-radius: 30px;
             text-decoration: none;
@@ -193,8 +208,7 @@
         }
         
         .btn-clone:hover {
-            background: var(--secondary);
-            color: white;
+            background: #45a049;
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
@@ -315,30 +329,38 @@
     </style>
 </head>
 <body>
+    <!-- Test Banner -->
+    <div class="test-banner">
+        🧪 FASE TEST ATTIVA - Clona drinking-pub-2024 GRATIS!
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="logo">DRINKING SaaS</div>
         <div class="nav-buttons">
             <a href="index.html" class="btn-nav">← Torna alla Home</a>
-            <a href="crea-ai.html" class="btn-nav">🤖 Versione AI</a>
+            <a href="crea-ai.html" class="btn-nav">🤖 Testa Arturo AI</a>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>🚀 Clona il Sito Demo - Crea il Tuo Sito Pub</h1>
-            <p>Ottieni un sito IDENTICO al nostro demo, ma con i tuoi contenuti</p>
-            <div class="price-tag">€9,90</div>
-            <p>Setup immediato • Design professionale • Zero competenze tecniche</p>
+            <h1>🧪 CLONA drinking-pub-2024</h1>
+            <p>Genera un sito IDENTICO al demo originale - COMPLETAMENTE GRATIS per il test!</p>
+            <div class="price-tag">
+                <span class="old-price">€9,90</span>
+                GRATIS IN FASE TEST
+            </div>
+            <p>Design esatto • Stesse funzionalità • Testa ordini WhatsApp</p>
         </div>
     </section>
 
     <!-- Demo Preview -->
     <section class="container">
         <div class="demo-preview">
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">🎯 Il Tuo Sito Avrà Questo Design</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Stessa struttura, stessi colori, stesso layout - Solo i contenuti cambiano</p>
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">🎯 CLONA ESATTAMENTE QUESTO DESIGN</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Stesso design, stessi colori, stesso layout di drinking-pub-2024</p>
             
             <div class="preview-container">
                 <iframe class="preview-iframe" 
@@ -366,15 +388,15 @@
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <div>Paga €9,90</div>
+                <div>Genera</div>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <div>Scarica Sito</div>
+                <div>Scarica</div>
             </div>
             <div class="step">
                 <div class="step-number">4</div>
-                <div>Online Subito</div>
+                <div>Testa</div>
             </div>
         </div>
     </section>
@@ -382,7 +404,7 @@
     <!-- Clone Form -->
     <section class="container">
         <div class="clone-form">
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">🎨 Personalizza il Tuo Sito</h2>
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">🎨 Personalizza il Clone</h2>
             
             <form id="cloneForm">
                 <div class="form-group">
@@ -429,12 +451,12 @@ Weissbier - €5,50"></textarea>
                 </div>
                 
                 <button type="button" onclick="generateCloneSite()" class="btn-clone">
-                    🚀 CREA IL MIO SITO CLONE - €9,90
+                    🧪 CLONA drinking-pub-2024 - TEST GRATIS
                 </button>
                 
                 <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
-                    ✅ Soddisfatto o rimborsato entro 30 giorni<br>
-                    📧 Supporto via email incluso
+                    🧪 Versione TEST - Prova tutto gratuitamente<br>
+                    📧 Invia feedback a info@drinking-saas.it
                 </p>
             </form>
         </div>
@@ -442,28 +464,28 @@ Weissbier - €5,50"></textarea>
 
     <!-- Success Message -->
     <div id="successMessage" class="success-message">
-        <h2 style="margin-bottom: 1rem;">🎉 SITO CREATO CON SUCCESSO!</h2>
+        <h2 style="margin-bottom: 1rem;">🎉 CLONE CREATO CON SUCCESSO!</h2>
         <p style="font-size: 1.2rem; margin-bottom: 1rem;">Il file <strong id="fileName">il-tuo-pub.html</strong> è stato scaricato</p>
-        <p>Ora puoi caricare il file su qualsiasi hosting e il tuo sito sarà live!</p>
+        <p>Design IDENTICO a drinking-pub-2024 - Ora puoi testare tutto!</p>
         <div style="margin-top: 2rem;">
             <button onclick="showSetupInstructions()" class="btn-primary" style="background: white; color: #4CAF50;">
-                📖 Istruzioni Setup
+                📖 Istruzioni Test
             </button>
             <button onclick="resetForm()" class="btn-primary" style="background: white; color: #4CAF50; margin-left: 1rem;">
-                🏠 Crea Altro Sito
+                🏠 Crea Altro Clone
             </button>
         </div>
     </div>
 
     <!-- Features -->
     <section class="container">
-        <h2 style="text-align: center; color: var(--primary); margin: 3rem 0 1rem;">✅ Cosa Ottieni con il Clone</h2>
+        <h2 style="text-align: center; color: var(--primary); margin: 3rem 0 1rem;">✅ Clona ESATTAMENTE drinking-pub-2024</h2>
         
         <div class="features-grid">
             <div class="feature-item">
                 <div class="feature-icon">🎨</div>
-                <h3>Design Professionale</h3>
-                <p>Stesso design del demo, già testato e ottimizzato</p>
+                <h3>Design Identico</h3>
+                <p>Stesso design, stessi colori, stesso layout</p>
             </div>
             
             <div class="feature-item">
@@ -480,8 +502,8 @@ Weissbier - €5,50"></textarea>
             
             <div class="feature-item">
                 <div class="feature-icon">⚡</div>
-                <h3>Setup Immediato</h3>
-                <p>Sito pronto in 2 minuti</p>
+                <h3>Test Immediato</h3>
+                <p>Prova tutto in 2 minuti</p>
             </div>
         </div>
     </section>
@@ -489,8 +511,8 @@ Weissbier - €5,50"></textarea>
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Soluzioni per Pub e Birrerie</p>
-            <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">📧 info@drinking-saas.it | 📞 Supporto clienti</p>
+            <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Clona drinking-pub-2024</p>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">🧪 Fase Test - Invia feedback a info@drinking-saas.it</p>
         </div>
     </footer>
 
@@ -512,8 +534,8 @@ Weissbier - €5,50"></textarea>
                 return;
             }
             
-            // Simula pagamento (in produzione qui andrebbe Stripe/PayPal)
-            if (!confirm(`CONFERMA ACQUISTO\n\n🏠 Pub: ${userData.pubName}\n📱 WhatsApp: ${userData.whatsapp}\n🍺 Birre: ${userData.beers.length}\n💰 Prezzo: €9,90\n\nProcedere con il pagamento?`)) {
+            // 🧪 FASE TEST - RIMOSSO PAGAMENTO
+            if (!confirm(`🧪 TEST GRATUITO - Clona drinking-pub-2024\n\n🏠 Pub: ${userData.pubName}\n📱 WhatsApp: ${userData.whatsapp}\n🍺 Birre: ${userData.beers.length}\n\nGenerare il clone del sito demo?`)) {
                 return;
             }
             
@@ -527,154 +549,173 @@ Weissbier - €5,50"></textarea>
             document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
         }
         
-        // Genera HTML clonato dal tuo sito demo
+        // Genera HTML che clona ESATTAMENTE drinking-pub-2024
         function generateClonedHTML(userData) {
             return `<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${userData.pubName} - Sito Ufficiale</title>
+    <title>${userData.pubName}</title>
     <style>
-        /* STILI BASATI SUL TUO SITO DRINKING-PUB-2024 */
+        /* STILE ESATTO di drinking-pub-2024 */
         :root {
-            --primary-color: #8B4513;
-            --secondary-color: #D2691E;
-            --accent-color: #FFD700;
-            --text-dark: #2C1810;
-            --background-light: #F5F5DC;
+            --color-primary: #8B4513;
+            --color-secondary: #D2691E; 
+            --color-accent: #FFD700;
+            --color-dark: #2C1810;
+            --color-light: #F5F5DC;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--background-light);
-            color: var(--text-dark);
+            background-color: var(--color-light);
+            color: var(--color-dark);
             line-height: 1.6;
         }
         
-        .header {
-            background-color: var(--primary-color);
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-        
-        .nav-links {
             display: flex;
-            gap: 2rem;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
         }
         
-        .nav-links a {
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
-        .nav-links a:hover {
-            color: var(--accent-color);
+        nav a:hover {
+            color: var(--color-accent);
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .hero {
-            background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.9)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.8)), url('https://images.unsplash.com/photo-1572119865084-43c285814d63?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
+            padding: 5rem 0;
             text-align: center;
-            padding: 4rem 2rem;
         }
         
-        .hero h1 {
-            font-size: 3rem;
+        .hero h2 {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--accent-color);
+            color: var(--color-accent);
         }
         
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: var(--text-dark);
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
+        .btn {
             display: inline-block;
-            transition: all 0.3s ease;
+            padding: 12px 30px;
+            background-color: var(--color-accent);
+            color: var(--color-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
+            font-size: 1rem;
         }
         
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            color: white;
-            transform: translateY(-2px);
+        .btn:hover {
+            background-color: #ffed4a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .menu-section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 5rem 0;
         }
         
-        .menu-category {
+        .section-title {
+            text-align: center;
             margin-bottom: 3rem;
         }
         
-        .menu-category h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-        
-        .beer-item {
-            background: white;
-            padding: 1.5rem;
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--color-primary);
             margin-bottom: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--accent-color);
         }
         
-        .beer-name {
+        .beer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .beer-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            border: 2px solid var(--color-primary);
+        }
+        
+        .beer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .beer-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .beer-price {
+            font-size: 1.5rem;
             font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .beer-description {
-            color: #666;
-            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin: 1rem 0;
         }
         
         .whatsapp-section {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 0;
             text-align: center;
         }
         
@@ -697,104 +738,114 @@ Weissbier - €5,50"></textarea>
         }
         
         .footer {
-            background-color: var(--text-dark);
+            background-color: var(--color-dark);
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 2rem;
         }
         
-        .address-info {
-            background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem auto;
-            max-width: 300px;
-        }
-        
         @media (max-width: 768px) {
-            .header {
+            .header-content {
                 flex-direction: column;
-                gap: 1rem;
-                text-align: center;
+                gap: 15px;
             }
             
-            .nav-links {
-                gap: 1rem;
+            nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
             }
             
-            .hero h1 {
+            .hero h2 {
                 font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .menu-section {
-                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER - Stesso design del demo -->
-    <header class="header">
-        <div class="logo">${userData.pubName}</div>
-        <nav class="nav-links">
-            <a href="#birre">Le Birre</a>
-            <a href="#ordina">Ordina</a>
-            <a href="#contatti">Contatti</a>
-        </nav>
+    <!-- HEADER - Stesso design di drinking-pub-2024 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div>🍻</div>
+                    <h1>${userData.pubName}</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#birre">Le Birre</a></li>
+                        <li><a href="#ordina">Ordina</a></li>
+                        <li><a href="#contatti">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <!-- HERO SECTION - Stesso design del demo -->
+    <!-- HERO SECTION - Stesso design di drinking-pub-2024 -->
     <section class="hero">
-        <h1>${userData.pubName}</h1>
-        <p>${userData.slogan}</p>
-        <a href="#birre" class="btn-primary">Scopri le Nostre Birre</a>
-    </section>
-
-    <!-- MENU SECTION - Stesso design del demo -->
-    <section class="menu-section" id="birre">
-        <div class="menu-category">
-            <h3>🍺 Le Nostre Birre</h3>
-            ${userData.beers.map(beer => `
-                <div class="beer-item">
-                    <div class="beer-name">${beer}</div>
-                    <div class="beer-description">Birra artigianale preparata con ingredienti di alta qualità</div>
-                </div>
-            `).join('')}
+        <div class="container">
+            <h2>${userData.pubName}</h2>
+            <p>${userData.slogan}</p>
+            <a href="#birre" class="btn">Scopri le Nostre Birre</a>
         </div>
     </section>
 
-    <!-- WHATSAPP SECTION - Stesso design del demo -->
-    <section class="whatsapp-section" id="ordina">
-        <h2>Ordina Ora su WhatsApp</h2>
-        <p>Consegna a domicilio o ritiro in pub</p>
-        
-        <a href="https://wa.me/${userData.whatsapp}?text=Ciao ${userData.pubName}! Vorrei ordinare delle birre" 
-           class="whatsapp-btn" target="_blank">
-            📱 Ordina su WhatsApp
-        </a>
-        
-        <p><strong>${userData.whatsapp}</strong></p>
-        
-        ${userData.address ? `
-            <div class="address-info">
-                <strong>📍 Ci trovi qui:</strong><br>
-                ${userData.address}
+    <!-- MENU SECTION - Stesso design di drinking-pub-2024 -->
+    <section class="menu-section" id="birre">
+        <div class="container">
+            <div class="section-title">
+                <h2>Le Nostre Birre</h2>
+                <p>Birre artigianali selezionate per i veri intenditori</p>
             </div>
-        ` : ''}
+            
+            <div class="beer-grid">
+                ${userData.beers.map(beer => {
+                    const [name, price] = beer.split(' - ');
+                    return `
+                    <div class="beer-card">
+                        <div class="beer-icon">🍺</div>
+                        <h3>${name || beer}</h3>
+                        <div class="beer-price">${price || '€5,00'}</div>
+                        <p>Birra artigianale preparata con ingredienti di alta qualità e passione</p>
+                    </div>
+                    `;
+                }).join('')}
+            </div>
+        </div>
     </section>
 
-    <!-- FOOTER - Stesso design del demo -->
+    <!-- WHATSAPP SECTION - Stesso design di drinking-pub-2024 -->
+    <section class="whatsapp-section" id="ordina">
+        <div class="container">
+            <h2>Ordina Ora su WhatsApp</h2>
+            <p>Consegna a domicilio o ritiro in pub</p>
+            
+            <a href="https://wa.me/${userData.whatsapp}?text=Ciao ${userData.pubName}! Vorrei ordinare delle birre" 
+               class="whatsapp-btn" target="_blank">
+                📱 Ordina su WhatsApp
+            </a>
+            
+            <p><strong>${userData.whatsapp}</strong></p>
+            
+            ${userData.address ? `
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px; display: inline-block;">
+                    <strong>📍 Ci trovi qui:</strong><br>
+                    ${userData.address}
+                </div>
+            ` : ''}
+        </div>
+    </section>
+
+    <!-- FOOTER - Stesso design di drinking-pub-2024 -->
     <footer class="footer" id="contatti">
-        <p><strong>${userData.pubName}</strong></p>
-        <p>${userData.slogan}</p>
-        <p style="margin-top: 1rem; opacity: 0.8;">&copy; ${new Date().getFullYear()} ${userData.pubName} - Tutti i diritti riservati</p>
+        <div class="container">
+            <p><strong>${userData.pubName}</strong></p>
+            <p>${userData.slogan}</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">
+                &copy; ${new Date().getFullYear()} ${userData.pubName} - Clonato con Drinking SaaS
+            </p>
+        </div>
     </footer>
 
     <script>
@@ -812,16 +863,7 @@ Weissbier - €5,50"></textarea>
             });
         });
         
-        // Ottimizza click WhatsApp per mobile
-        document.querySelector('.whatsapp-btn').addEventListener('click', function(e) {
-            // Su mobile, apri direttamente l'app WhatsApp
-            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Lascia che il link href normale gestisca l'apertura
-                return true;
-            }
-        });
-        
-        console.log('Sito pub generato con Drinking SaaS - drinking-saas.it');
+        console.log('Sito clonato da drinking-pub-2024 - Drinking SaaS');
     </script>
 </body>
 </html>`;
@@ -843,29 +885,34 @@ Weissbier - €5,50"></textarea>
         // Funzioni di supporto
         function showSetupInstructions() {
             const instructions = \`
-📖 **ISTRUZIONI SETUP SITO PUB**
+🧪 **ISTRUZIONI TEST CLONE**
 
-1. **HOSTING GRATIS** (Opzione facile):
-   • Vai su Netlify.com o Vercel.com
-   • Trascina il file HTML nella zona di upload
-   • Il tuo sito sarà live in 2 minuti!
+1. **APRI IL FILE**:
+   • Doppio click sul file HTML scaricato
+   • Si apre nel browser
+   • Testa tutte le funzionalità
 
-2. **HOSTING A PAGAMENTO** (Opzione professionale):
-   • Acquista hosting (SiteGround, Aruba, etc.)
-   • Carica il file via FTP o file manager
-   • Il sito è online!
+2. **TEST ORDINI WHATSAPP**:
+   • Clicca "Ordina su WhatsApp" 
+   • Verifica che apra l'app correttamente
+   • Testa su mobile e desktop
 
-3. **DOMINIO PERSONALE** (Opzionale):
-   • Compra un dominio (IlTuoPub.it)
-   • Collegalo al tuo hosting
-   • Professionalità al 100%
+3. **TEST DESIGN RESPONSIVE**:
+   • Ridimensiona la finestra del browser
+   • Prova su smartphone (F12 > Device Toolbar)
+   • Verifica che sia mobile-friendly
 
-💡 **SUGGERIMENTI**:
-• Aggiorna regolarmente la lista birre
-• Rispondi sempre su WhatsApp
-• Condividi il link sui social
+4. **HOSTING TEST** (Opzionale):
+   • Netlify.com - Drag & drop del file
+   • Il sito sarà online in 2 minuti
 
-Hai bisogno di aiuto? info@drinking-saas.it
+📊 **COSA TESTARE**:
+• Design identico a drinking-pub-2024 ✓
+• Funzionamento ordini WhatsApp ✓  
+• Responsive su tutti i dispositivi ✓
+• Velocità di caricamento ✓
+
+💡 Invia feedback a: info@drinking-saas.it
 \`;
             alert(instructions);
         }
