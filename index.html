@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drinking SaaS - Crea il Sito del Tuo Pub</title>
+    <title>Drinking SaaS - Crea Sito Pub con AI</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -13,10 +13,14 @@
             --light: #F5F5DC;
         }
         
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
             background: var(--light);
             color: var(--dark);
             line-height: 1.6;
@@ -29,7 +33,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .logo {
@@ -38,17 +42,54 @@
             color: var(--accent);
         }
         
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-nav {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .btn-nav:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
         .hero {
-            background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.9));
+            background: linear-gradient(rgba(44, 24, 16, 0.9), rgba(44, 24, 16, 0.95)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
         }
         
         .btn-primary {
             background: var(--secondary);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
@@ -56,39 +97,73 @@
             margin: 10px;
             border: none;
             cursor: pointer;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
             background: var(--accent);
             color: var(--dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
-        .btn-demo {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            padding: 12px 30px;
+        .btn-ai {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 35px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
             margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
-        .btn-demo:hover {
-            background: var(--accent);
-            color: var(--dark);
+        .btn-ai:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
-        .demo-section {
-            background: var(--dark);
-            color: white;
+        .ai-section {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: var(--dark);
             padding: 3rem 2rem;
             text-align: center;
             margin: 2rem 0;
+            border-radius: 15px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .ai-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .ai-feature {
+            background: rgba(255,255,255,0.9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .ai-feature .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
         
         .pricing-cards {
@@ -97,16 +172,24 @@
             gap: 2rem;
             padding: 2rem;
             flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .card {
             background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 2px solid var(--primary);
-            max-width: 300px;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--primary);
+            max-width: 350px;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
         
         .card.popular {
@@ -119,41 +202,62 @@
             content: "PIÙ SCELTO";
             background: var(--accent);
             color: var(--dark);
-            padding: 5px 15px;
-            border-radius: 15px;
+            padding: 8px 20px;
+            border-radius: 20px;
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: bold;
         }
         
         .price {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary);
             font-weight: bold;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+        }
+        
+        .price small {
+            font-size: 1rem;
+            color: #666;
         }
         
         .features {
             background: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
         }
         
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .feature-item {
-            padding: 1.5rem;
+            padding: 2rem;
             background: var(--light);
             border-radius: 10px;
             border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
         }
         
         footer {
@@ -163,101 +267,544 @@
             padding: 2rem;
             margin-top: 2rem;
         }
+        
+        /* CHATBOT STYLES */
+        .chatbot-launcher {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--accent);
+            color: var(--dark);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: 3px solid var(--dark);
+        }
+        
+        .chatbot-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 25px;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+            border: 3px solid var(--dark);
+            overflow: hidden;
+        }
+        
+        .chatbot-header {
+            background: var(--dark);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            padding: 1rem;
+            border-radius: 18px;
+            max-width: 85%;
+            line-height: 1.4;
+            position: relative;
+            animation: messageAppear 0.3s ease-out;
+        }
+        
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bot-message {
+            background: var(--light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: var(--accent);
+            color: var(--dark);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .quick-reply {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quick-reply:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 1.2rem;
+            border-top: 2px solid var(--light);
+            background: white;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: var(--accent);
+        }
+        
+        .chatbot-send {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chatbot-send:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="logo">DRINKING SaaS</div>
-        <nav>
-            <a href="#demo" style="color: white; margin: 0 15px; text-decoration: none;">Vedi Demo</a>
-            <a href="#prezzi" style="color: white; margin: 0 15px; text-decoration: none;">Prezzi</a>
-            <a href="#funziona" style="color: white; margin: 0 15px; text-decoration: none;">Come Funziona</a>
-        </nav>
+        <div class="nav-buttons">
+            <a href="#demo" class="btn-nav">Vedi Demo</a>
+            <a href="#prezzi" class="btn-nav">Prezzi</a>
+            <a href="crea-gratis.html" class="btn-nav">Crea Gratis</a>
+        </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Il Sito del Tuo Pub, Pronto in 5 Minuti</h1>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">Lo stesso sistema del nostro pub demo. Ordini WhatsApp, menu birre, design professionale.</p>
-        
-        <div>
-            <a href="crea-gratis.html" class="btn-primary">Crea Gratis</a>
-            <a href="crea-premium.html" class="btn-primary" style="background: var(--accent); color: var(--dark);">
-                Sito Premium - €9,90
+        <div class="container">
+            <h1>🍺 Crea il Sito del Tuo Pub con l'AI</h1>
+            <p>Chatta con Arturo, il nostro assistente AI, e crea un sito professionale in pochi minuti</p>
+            
+            <div style="margin-top: 2rem;">
+                <a href="crea-ai.html" class="btn-ai">💬 Parla con Arturo - €9,90</a>
+                <a href="crea-gratis.html" class="btn-primary">Crea Manualmente Gratis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Section -->
+    <section class="ai-section">
+        <div class="container">
+            <h2>🚀 Creazione Guidata con Intelligenza Artificiale</h2>
+            <p>Arturo ti assiste passo-passo nella creazione del sito pub perfetto</p>
+            
+            <div class="ai-features">
+                <div class="ai-feature">
+                    <div class="icon">💬</div>
+                    <h3>Chat Intuitiva</h3>
+                    <p>Parla naturalmente con Arturo come se fosse un esperto di pub</p>
+                </div>
+                <div class="ai-feature">
+                    <div class="icon">🎨</div>
+                    <h3>Design Automatico</h3>
+                    <p>L'AI crea un design personalizzato basato sulle tue risposte</p>
+                </div>
+                <div class="ai-feature">
+                    <div class="icon">⚡</div>
+                    <h3>5 Minuti</h3>
+                    <p>Sito pronto e online in meno di 5 minuti di conversazione</p>
+                </div>
+            </div>
+            
+            <a href="crea-ai.html" class="btn-primary" style="background: white; color: var(--dark); margin-top: 2rem;">
+                PROVA LA DEMO DELL'AI
             </a>
         </div>
     </section>
 
-    <section id="demo" class="demo-section">
-        <h2 style="margin-bottom: 1rem;">🚀 Prova Subito la Demo Funzionante</h2>
-        <p style="margin-bottom: 2rem; font-size: 1.1rem;">Guarda come funziona il sistema di ordini con il nostro pub esempio:</p>
-        <a href="https://lucio1962.github.io/drinking-pub-2024/" 
-           target="_blank" 
-           class="btn-demo">
-           🍺 APRI IL PUB DEMO
-        </a>
-        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-            Puoi fare ordini reali tramite WhatsApp e testare tutte le funzioni!
-        </p>
-    </section>
-
-    <section id="funziona" class="features">
-        <h2>Come Funziona Drinking SaaS</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h3>🚀 1. Scegli il Piano</h3>
-                <p>Gratis o Premium a €9,90 - Prova la demo prima di decidere</p>
-            </div>
-            <div class="feature-item">
-                <h3>🎨 2. Personalizza</h3>
-                <p>Inserisci nome pub, menu birre e numero WhatsApp</p>
-            </div>
-            <div class="feature-item">
-                <h3>📱 3. Ricevi il Sito</h3>
-                <p>Il tuo pub online con lo stesso sistema della demo</p>
-            </div>
-            <div class="feature-item">
-                <h3>🍺 4. Inizia a Vendere</h3>
-                <p>Ordini diretti sul tuo WhatsApp come nel pub demo</p>
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Come Funziona Drinking SaaS</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>💬 1. Chatta con Arturo</h3>
+                    <p>Rispondi alle domande dell'AI sul tuo pub e le tue birre</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🎯 2. Personalizza</h3>
+                    <p>Arturo ti suggerisce le migliori opzioni per il tuo business</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🚀 3. Sito Pronto</h3>
+                    <p>Ricevi il sito ottimizzato per ordini WhatsApp in pochi minuti</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🍺 4. Inizia a Vendere</h3>
+                    <p>I clienti ordinano direttamente sul tuo WhatsApp</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="prezzi" style="padding: 3rem 2rem; text-align: center; background: var(--light);">
-        <h2 style="margin-bottom: 2rem;">Scegli il Piano Perfetto per il Tuo Pub</h2>
+    <!-- Pricing -->
+    <section id="prezzi" style="padding: 4rem 2rem; background: var(--light);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Scegli il Piano Perfetto</h2>
+            
+            <div class="pricing-cards">
+                <div class="card">
+                    <h3>GRATIS</h3>
+                    <div class="price">€0</div>
+                    <ul style="text-align: left; list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Sito base per pub
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Menu birre semplice
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Ordini WhatsApp
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Assistenza base
+                        </li>
+                    </ul>
+                    <a href="crea-gratis.html" class="btn-primary">CREA GRATIS</a>
+                </div>
+                
+                <div class="card popular">
+                    <h3>PREMIUM AI</h3>
+                    <div class="price">€9,90</div>
+                    <ul style="text-align: left; list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Assistente AI Arturo
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Design personalizzato
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Menu birre completo
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Assistenza prioritaria
+                        </li>
+                        <li style="margin: 12px 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span> Setup in 24 ore
+                        </li>
+                    </ul>
+                    <a href="crea-ai.html" class="btn-ai">CHATTA CON ARTURO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">🎯 Guarda la Demo Funzionante</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.2rem; opacity: 0.9;">Prova subito il sistema di ordini con il nostro pub esempio</p>
+            <a href="https://lucio1962.github.io/drinking-pub-2024/" 
+               target="_blank" 
+               class="btn-ai" 
+               style="background: white; color: var(--dark); font-size: 1.1rem;">
+               🍺 APRI IL PUB DEMO
+            </a>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.7;">
+                Puoi fare ordini reali tramite WhatsApp e testare tutte le funzioni!
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Soluzioni AI per pub e birrerie</p>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">📞 Contattaci: info@drinking-saas.it</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Launcher -->
+    <div class="chatbot-launcher" id="chatbotLauncher">
+        💬
+    </div>
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <div class="chatbot-avatar">A</div>
+                <div>
+                    <strong>Arturo</strong>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Assistente AI Drinking</div>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">×</button>
+        </div>
         
-        <div class="pricing-cards">
-            <div class="card">
-                <h3>GRATIS</h3>
-                <div class="price">€0</div>
-                <ul style="text-align: left; list-style: none; padding: 0;">
-                    <li style="margin: 10px 0;">✓ Sito base per pub</li>
-                    <li style="margin: 10px 0;">✓ Menu birre semplice</li>
-                    <li style="margin: 10px 0;">✓ Ordini WhatsApp</li>
-                    <li style="margin: 10px 0;">✓ Design standard</li>
-                </ul>
-                <a href="crea-gratis.html" class="btn-primary">CREA GRATIS</a>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <strong>Ciao! Sono Arturo 🍺</strong><br>
+                Il tuo assistente AI per creare il sito del tuo pub. In cosa posso aiutarti?
             </div>
             
-            <div class="card popular">
-                <h3>PREMIUM</h3>
-                <div class="price">€9,90</div>
-                <ul style="text-align: left; list-style: none; padding: 0;">
-                    <li style="margin: 10px 0;">✓ Tutto del Gratis</li>
-                    <li style="margin: 10px 0;">✓ Design personalizzato</li>
-                    <li style="margin: 10px 0;">✓ Menu birre completo</li>
-                    <li style="margin: 10px 0;">✓ Assistenza prioritaria</li>
-                    <li style="margin: 10px 0;">✓ Dominio personalizzato</li>
-                </ul>
-                <a href="crea-premium.html" class="btn-primary" style="background: var(--accent); color: var(--dark);">
-                    SCELGO PREMIUM
-                </a>
+            <div class="quick-replies">
+                <div class="quick-reply" onclick="sendQuickReply('Voglio creare un sito pub')">Crea sito pub</div>
+                <div class="quick-reply" onclick="sendQuickReply('Quanto costa?')">Prezzi</div>
+                <div class="quick-reply" onclick="sendQuickReply('Mostrami un esempio')">Vedi demo</div>
             </div>
         </div>
-    </section>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <span>Arturo sta scrivendo</span>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Scrivi il tuo messaggio...">
+            <button class="chatbot-send" id="chatbotSend">➤</button>
+        </div>
+    </div>
 
-    <footer>
-        <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Soluzioni digitali per pub e birrerie</p>
-        <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">📞 Contattaci: info@drinking-saas.it</p>
-    </footer>
+    <script>
+        // Chatbot Elements
+        const chatbotLauncher = document.getElementById('chatbotLauncher');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Toggle Chatbot
+        chatbotLauncher.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        // Send Message
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                chatbotInput.value = '';
+                
+                // Show typing indicator
+                typingIndicator.style.display = 'flex';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                    aiResponse(message);
+                }, 1500);
+            }
+        }
+
+        // Quick Reply
+        function sendQuickReply(reply) {
+            addMessage(reply, 'user');
+            
+            typingIndicator.style.display = 'flex';
+            
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                aiResponse(reply);
+            }, 1000);
+        }
+
+        // Add Message to Chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // AI Responses
+        function aiResponse(userMessage) {
+            let response = '';
+            
+            if (userMessage.toLowerCase().includes('ciao') || userMessage.toLowerCase().includes('salve')) {
+                response = "Ciao! Sono Arturo, il tuo assistente AI specializzato in pub e birrerie. Sono qui per aiutarti a creare un sito fantastico per il tuo pub! 🍺";
+            } else if (userMessage.toLowerCase().includes('crea') || userMessage.toLowerCase().includes('sito')) {
+                response = "Perfetto! Posso aiutarti a creare un sito professionale per il tuo pub. Ti guiderò passo-passo. Vuoi iniziare subito?";
+                
+                // Add quick replies
+                setTimeout(() => {
+                    const quickReplies = document.createElement('div');
+                    quickReplies.className = 'quick-replies';
+                    quickReplies.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Si, iniziamo!')">Si, iniziamo!</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Prima vorrei sapere i prezzi')">Prezzi prima</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Mostrami un esempio')">Vedi un esempio</div>
+                    `;
+                    chatbotMessages.appendChild(quickReplies);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 100);
+            } else if (userMessage.toLowerCase().includes('prezzi') || userMessage.toLowerCase().includes('costa') || userMessage.toLowerCase().includes('costo')) {
+                response = "Abbiamo due opzioni:\n\n🍺 **GRATIS**: Sito base con menu semplice e ordini WhatsApp\n\n🤖 **PREMIUM AI (€9,90)**: Io ti assisto personalmente, design ottimizzato, setup in 24 ore e assistenza prioritaria!\n\nQuale ti interessa?";
+            } else if (userMessage.toLowerCase().includes('esempio') || userMessage.toLowerCase().includes('demo')) {
+                response = "Ecco un esempio reale di un pub creato con il nostro sistema:\n\n🔗 https://lucio1962.github.io/drinking-pub-2024/\n\nPuoi provare a fare un ordine tramite WhatsApp! Vuoi creare un sito simile per il tuo pub?";
+            } else if (userMessage.toLowerCase().includes('si') || userMessage.toLowerCase().includes('iniziamo')) {
+                response = "Fantastico! Iniziamo. Come si chiama il tuo pub? 🏠";
+            } else {
+                response = "Interessante! Posso aiutarti a:\n• Creare un sito per il tuo pub\n• Configurare il menu delle birre\n• Impostare gli ordini WhatsApp\n• Ottimizzare il design\n\nCosa ti piacerebbe fare?";
+            }
+            
+            addMessage(response, 'bot');
+        }
+
+        // Event Listeners
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Auto-open chatbot after 10 seconds
+        setTimeout(() => {
+            if (chatbotWindow.style.display !== 'flex') {
+                chatbotLauncher.style.animation = 'pulse 2s infinite';
+                setTimeout(() => {
+                    chatbotLauncher.style.animation = '';
+                }, 6000);
+            }
+        }, 10000);
+    </script>
 </body>
 </html>
