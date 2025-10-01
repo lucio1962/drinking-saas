@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crea il Tuo Sito Pub Gratis - Drinking</title>
+    <title>Crea il Tuo Sito Pub Gratis - Drinking SaaS</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -36,6 +35,27 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--accent);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-nav {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-nav:hover {
+            background: var(--accent);
+            color: var(--dark);
         }
         
         .container {
@@ -113,17 +133,42 @@
             border-radius: 5px;
             border-left: 4px solid var(--accent);
         }
+        
+        .demo-banner {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: var(--dark);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="logo">DRINKING</div>
-        <nav>
-            <a href="vendita.html" style="color: white; margin: 0 15px; text-decoration: none;">← Torna alla Vendita</a>
-        </nav>
+        <div class="logo">DRINKING SaaS</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="btn-nav">← Torna alla Vendita</a>
+            <a href="https://lucio1962.github.io/drinking-pub-2024/" 
+               target="_blank" 
+               class="btn-nav">
+               🍺 Vedi Demo
+            </a>
+        </div>
     </header>
 
     <div class="container">
+        <div class="demo-banner">
+            <h3>🎯 Prima di creare, guarda la Demo Funzionante!</h3>
+            <p>Vedi come funziona il sistema di ordini con il nostro pub esempio</p>
+            <a href="https://lucio1962.github.io/drinking-pub-2024/" 
+               target="_blank" 
+               class="btn-primary" 
+               style="background: white; color: var(--dark); margin: 10px;">
+               🍺 APRI DEMO LIVE
+            </a>
+        </div>
+        
         <h1 style="text-align: center; color: var(--primary);">Crea il Sito del Tuo Pub Gratis</h1>
         <p style="text-align: center; margin-bottom: 2rem;">Compila il form per generare il tuo sito pub personalizzato</p>
         
@@ -230,7 +275,6 @@
         document.getElementById('pubForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Ottimo! Il tuo sito pub è in fase di creazione. Ti contatteremo via email entro 24 ore.');
-            // Qui andrebbe la logica per generare il sito
         });
     </script>
 </body>
