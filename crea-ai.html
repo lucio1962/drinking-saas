@@ -3,359 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crea con Arturo AI - FASE TEST - Drinking SaaS</title>
+    <title>Crea con Arturo AI - Drinking SaaS</title>
     <style>
-        :root {
-            --primary: #8B4513;
-            --secondary: #D2691E;
-            --accent: #FFD700;
-            --dark: #2C1810;
-            --light: #F5F5DC;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #F5F5DC;
+            color: #2C1810;
+            line-height: 1.5;
             padding: 0;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
         }
         
         .test-banner {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
+            background: #4CAF50;
             color: white;
-            padding: 1rem;
+            padding: 12px 15px;
             text-align: center;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 16px;
         }
         
         .header {
-            background: var(--dark);
+            background: #2C1810;
             color: white;
-            padding: 1rem 2rem;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .logo {
-            font-size: 1.8rem;
+            font-size: 20px;
             font-weight: bold;
-            color: var(--accent);
-        }
-        
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
+            color: #FFD700;
         }
         
         .btn-nav {
             background: transparent;
             color: white;
-            border: 2px solid var(--accent);
-            padding: 8px 20px;
+            border: 2px solid #FFD700;
+            padding: 8px 15px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 14px;
         }
         
-        .btn-nav:hover {
-            background: var(--accent);
-            color: var(--dark);
-        }
-        
-        .ai-hero {
-            background: linear-gradient(135deg, var(--accent), var(--secondary));
-            color: var(--dark);
-            padding: 3rem 2rem;
+        .hero {
+            background: linear-gradient(135deg, #8B4513, #2C1810);
+            color: white;
+            padding: 30px 20px;
             text-align: center;
         }
         
-        .ai-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .hero h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #FFD700;
         }
         
-        .ai-hero .price {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 1rem 0;
-            text-decoration: line-through;
-            opacity: 0.6;
-        }
-        
-        .ai-hero .free-badge {
+        .price-tag {
             background: #4CAF50;
             color: white;
-            padding: 10px 25px;
+            padding: 12px 20px;
             border-radius: 25px;
-            font-size: 1.5rem;
+            font-size: 18px;
             font-weight: bold;
-            margin: 0 1rem;
+            display: inline-block;
+            margin: 10px 0;
         }
         
-        .ai-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 2rem;
+        .container {
+            max-width: 100%;
+            padding: 20px 15px;
         }
         
-        .ai-chat-container {
+        .chat-container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border: 3px solid var(--dark);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             overflow: hidden;
-            height: 600px;
+            margin: 20px 0;
+            height: 400px;
             display: flex;
             flex-direction: column;
         }
         
-        .ai-info-sidebar {
-            background: var(--dark);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            height: fit-content;
-            position: sticky;
-            top: 2rem;
-        }
-        
         .chat-header {
-            background: var(--dark);
+            background: #2C1810;
             color: white;
-            padding: 1.5rem;
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            border-bottom: 3px solid var(--accent);
+            gap: 10px;
+            border-bottom: 3px solid #FFD700;
         }
         
         .arturo-avatar {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 20px;
             font-weight: bold;
-            color: var(--dark);
-            border: 3px solid white;
-        }
-        
-        .arturo-status {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #4CAF50;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            color: #2C1810;
         }
         
         .chat-messages {
             flex: 1;
-            padding: 1.5rem;
+            padding: 15px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 10px;
         }
         
         .message {
-            padding: 1rem 1.2rem;
+            padding: 12px 15px;
             border-radius: 18px;
             max-width: 85%;
-            line-height: 1.5;
-            position: relative;
-            animation: messageAppear 0.4s ease-out;
-        }
-        
-        @keyframes messageAppear {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            line-height: 1.4;
+            font-size: 16px;
         }
         
         .bot-message {
-            background: var(--light);
+            background: #F5F5DC;
             align-self: flex-start;
             border-bottom-left-radius: 5px;
-            border: 1px solid #e0e0e0;
         }
         
         .user-message {
-            background: var(--accent);
-            color: var(--dark);
+            background: #FFD700;
+            color: #2C1810;
             align-self: flex-end;
             border-bottom-right-radius: 5px;
             font-weight: 500;
         }
         
-        .arturo-joke {
-            background: linear-gradient(135deg, var(--accent), #FFECB3);
-            border: 2px dashed var(--secondary);
-            margin: 0.5rem 0;
-            padding: 1rem;
-            border-radius: 15px;
-            font-style: italic;
-        }
-        
-        .arturo-tip {
-            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
-            border-left: 4px solid #4CAF50;
-            margin: 0.5rem 0;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-        
         .quick-replies {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1rem;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
         }
         
         .quick-reply {
-            background: var(--secondary);
+            background: #D2691E;
             color: white;
-            padding: 0.8rem 1.2rem;
+            padding: 12px 15px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
             border: none;
-            font-weight: 500;
-        }
-        
-        .quick-reply:hover {
-            background: var(--primary);
-            transform: scale(1.05);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-        
-        .quick-reply.fun {
-            background: var(--accent);
-            color: var(--dark);
+            text-align: left;
         }
         
         .chat-input {
             display: flex;
-            padding: 1.5rem;
-            border-top: 2px solid var(--light);
+            padding: 15px;
+            border-top: 2px solid #F5F5DC;
             background: white;
-            gap: 1rem;
+            gap: 10px;
         }
         
         .chat-input input {
             flex: 1;
-            padding: 1rem 1.5rem;
+            padding: 12px 15px;
             border: 2px solid #ddd;
             border-radius: 25px;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        .chat-input input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+            font-size: 16px;
         }
         
         .chat-send {
-            background: var(--accent);
-            color: var(--dark);
+            background: #FFD700;
+            color: #2C1810;
             border: none;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 18px;
             font-weight: bold;
         }
         
-        .chat-send:hover {
-            background: var(--secondary);
-            color: white;
-            transform: scale(1.1) rotate(10deg);
-        }
-        
-        .typing-indicator {
-            display: none;
-            align-items: center;
-            gap: 10px;
-            padding: 1rem;
-            color: #666;
-            font-style: italic;
-        }
-        
-        .typing-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: typingAnimation 1.4s infinite ease-in-out;
-        }
-        
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        
-        @keyframes typingAnimation {
-            0%, 60%, 100% {
-                transform: translateY(0);
-                opacity: 0.4;
-            }
-            30% {
-                transform: translateY(-15px);
-                opacity: 1;
-            }
+        .progress-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            text-align: center;
         }
         
         .progress-bar {
             background: #e0e0e0;
             border-radius: 10px;
             height: 8px;
-            margin: 1rem 0;
+            margin: 15px 0;
             overflow: hidden;
         }
         
         .progress-fill {
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            background: linear-gradient(90deg, #FFD700, #D2691E);
             height: 100%;
             width: 0%;
             transition: width 0.5s ease;
@@ -364,275 +221,268 @@
         
         .success-section {
             background: white;
-            padding: 2rem;
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
             text-align: center;
             display: none;
         }
         
-        .btn-success {
-            background: #4CAF50;
-            color: white;
-            padding: 18px 45px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            display: inline-block;
+        .preview-area {
+            background: #F5F5DC;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px dashed #8B4513;
         }
         
-        .btn-success:hover {
-            background: #45a049;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .preview-area {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            border: 2px dashed var(--primary);
-            min-height: 300px;
-        }
-
         .action-buttons {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
         }
         
         .action-btn {
-            background: var(--accent);
-            color: var(--dark);
-            padding: 12px 25px;
+            background: #FFD700;
+            color: #2C1810;
+            padding: 15px 20px;
             border-radius: 25px;
             border: none;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
+            font-size: 16px;
         }
         
-        .action-btn:hover {
-            background: var(--secondary);
-            color: white;
-            transform: translateY(-2px);
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            text-align: center;
         }
-
-        .site-preview {
-            background: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin: 1rem 0;
+        
+        .step {
+            flex: 1;
+            padding: 0 10px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #FFD700;
+            color: #2C1810;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 8px;
+            font-size: 18px;
+        }
+        
+        footer {
+            background: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        /* Mobile ottimizzato */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 25px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 22px;
+            }
+            
+            .container {
+                padding: 15px 10px;
+            }
+            
+            .chat-container {
+                height: 350px;
+            }
+            
+            .message {
+                font-size: 15px;
+                padding: 10px 12px;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chat-container {
+                height: 300px;
+            }
+            
+            .hero h1 {
+                font-size: 20px;
+            }
+            
+            .price-tag {
+                font-size: 16px;
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Test Banner -->
     <div class="test-banner">
-        🧪 FASE TEST ATTIVA - Arturo genera siti COMPLETI gratuitamente!
+        🧪 FASE TEST - Prova Arturo GRATIS
     </div>
 
     <!-- Header -->
     <header class="header">
         <div class="logo">DRINKING SaaS</div>
-        <div class="nav-buttons">
-            <a href="index.html" class="btn-nav">← Torna alla Home</a>
-            <a href="crea-clone.html" class="btn-nav">🎨 Clona Demo</a>
-        </div>
+        <a href="index.html" class="btn-nav">← Home</a>
     </header>
 
-    <!-- AI Hero Section -->
-    <section class="ai-hero">
-        <h1>🤖 Crea con Arturo - L'AI che sa di birra!</h1>
-        <p>Chiacchiera con me e ti creo un sito pub da urlo! 🍺</p>
-        <div class="price">€9,90</div>
-        <span class="free-badge">GRATIS IN FASE TEST!</span>
-        <p>Setup in 24 ore • Testa tutto senza pagare</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🤖 Crea con Arturo AI</h1>
+        <p>Sito pub professionale in 3 semplici passi</p>
+        <div class="price-tag">GRATIS IN FASE TEST</div>
+        <p>Design ottimizzato • Mobile perfetto • WhatsApp integrato</p>
     </section>
 
-    <!-- Main Container -->
-    <div class="ai-container">
-        <!-- AI Chat Container -->
-        <div class="ai-chat-container">
+    <!-- Steps -->
+    <section class="container">
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Parla con Arturo</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Personalizza</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Ottieni sito</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Container -->
+    <section class="container">
+        <div class="chat-container">
             <div class="chat-header">
                 <div class="arturo-avatar">A</div>
                 <div>
-                    <h3 style="margin: 0;">Arturo - Il Birraio Digitale</h3>
-                    <div class="arturo-status">
-                        <div class="status-dot"></div>
-                        <span>Online - Pronto a creare magie birrarie! ✨</span>
-                    </div>
+                    <h3 style="margin: 0; font-size: 18px;">Arturo - Assistente AI</h3>
+                    <div style="font-size: 14px; opacity: 0.8;">Online - Pronto ad aiutarti</div>
                 </div>
             </div>
             
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot-message">
-                    <strong>🍻 Ciao! Sono Arturo, il tuo birraio digitale preferito!</strong><br><br>
-                    Sono qui per trasformare la tua passione per la birra in un sito fantastico!<br><br>
-                    💬 <strong>COME FUNZIONA LA FASE TEST:</strong><br>
-                    1. Chiacchieriamo del tuo pub 🗣️<br>
-                    2. Ti do consigli da esperto 🎯<br>
-                    3. Creo il sito automaticamente ⚡<br>
-                    4. <strong>TESTI TUTTO GRATIS!</strong> 🎉<br><br>
-                    
-                    <div class="arturo-joke">
-                    🎭 <strong>Battuta di Arturo:</strong> Perché la birra non fa mai lo sciopero della sete? Perché è sempre in liquidazione! 🍺
-                    </div>
-                    
-                    Allora, come si chiama il tuo locale? 🏠
+                    <strong>Ciao! Sono Arturo 🍺</strong><br><br>
+                    Ti aiuto a creare il sito del tuo pub in pochi minuti.<br><br>
+                    <strong>Servono solo 3 informazioni:</strong><br>
+                    1. Nome del tuo pub<br>
+                    2. Numero WhatsApp<br>
+                    3. Lista birre<br><br>
+                    Come si chiama il tuo locale?
                 </div>
                 
                 <div class="quick-replies">
-                    <button class="quick-reply fun" onclick="sendQuickReply('Si, iniziamo! Sono pronto!')">🚀 Si, iniziamo!</button>
-                    <button class="quick-reply" onclick="sendQuickReply('Prima dimmi come funziona')">❓ Come funziona?</button>
-                    <button class="quick-reply" onclick="sendQuickReply('Mostrami un esempio')">🍺 Vedi esempio</button>
+                    <button class="quick-reply" onclick="sendQuickReply('Pronto! Iniziamo')">🚀 Pronto! Iniziamo</button>
+                    <button class="quick-reply" onclick="sendQuickReply('Test veloce')">🧪 Test Veloce</button>
                 </div>
-            </div>
-            
-            <div class="typing-indicator" id="typingIndicator">
-                <span>Arturo sta pensando...</span>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
             </div>
             
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Scrivi qui per chattare con Arturo...">
-                <button class="chat-send" id="chatSend">➤</button>
+                <input type="text" id="chatInput" placeholder="Scrivi qui..." onkeypress="if(event.key=='Enter') sendMessage()">
+                <button class="chat-send" onclick="sendMessage()">➤</button>
             </div>
         </div>
+    </section>
 
-        <!-- Info Sidebar -->
-        <div class="ai-info-sidebar">
-            <h3 style="color: var(--accent); margin-top: 0;">Cosa ottieni con Arturo:</h3>
-            
-            <div style="margin: 1.5rem 0;">
-                <div style="display: flex; align-items: center; margin: 1rem 0;">
-                    <span style="font-size: 1.5rem; margin-right: 1rem;">🤖</span>
-                    <div>
-                        <strong>Assistente AI Personale</strong>
-                        <p style="margin: 0.2rem 0 0 0; opacity: 0.8; font-size: 0.9rem;">Arturo ti guida passo-passo</p>
-                    </div>
-                </div>
-                
-                <div style="display: flex; align-items: center; margin: 1rem 0;">
-                    <span style="font-size: 1.5rem; margin-right: 1rem;">🎨</span>
-                    <div>
-                        <strong>Design Ottimizzato</strong>
-                        <p style="margin: 0.2rem 0 0 0; opacity: 0.8; font-size: 0.9rem;">Automatico basato sul tuo pub</p>
-                    </div>
-                </div>
-                
-                <div style="display: flex; align-items: center; margin: 1rem 0;">
-                    <span style="font-size: 1.5rem; margin-right: 1rem;">⚡</span>
-                    <div>
-                        <strong>24 Ore</strong>
-                        <p style="margin: 0.2rem 0 0 0; opacity: 0.8; font-size: 0.9rem;">Sito pronto in un giorno</p>
-                    </div>
-                </div>
-                
-                <div style="display: flex; align-items: center; margin: 1rem 0;">
-                    <span style="font-size: 1.5rem; margin-right: 1rem;">📞</span>
-                    <div>
-                        <strong>Supporto Priority</strong>
-                        <p style="margin: 0.2rem 0 0 0; opacity: 0.8; font-size: 0.9rem;">Assistenza dedicata</p>
-                    </div>
-                </div>
-            </div>
-
+    <!-- Progress -->
+    <section class="container">
+        <div class="progress-container">
+            <h3>Progresso Conversazione</h3>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p style="text-align: center; margin: 0; font-size: 0.9rem;">Completamento conversazione: <span id="progressText">0%</span></p>
-
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.2); border-radius: 10px;">
-                <p style="margin: 0; text-align: center; font-size: 0.9rem;">
-                    <strong>💡 Curiosità di Arturo:</strong><br>
-                    Lo sapevi che una buona descrizione delle birre aumenta le ordinazioni del 40%? 🎯
-                </p>
-            </div>
+            <p id="progressText">0% completato</p>
         </div>
-    </div>
+    </section>
 
     <!-- Success Section -->
-    <div id="successSection" class="success-section">
-        <h2 style="color: #4CAF50; margin-bottom: 1rem;">🎉 SITO CREATO DA ARTURO!</h2>
-        <p>Arturo ha creato il tuo sito pub personalizzato! Ecco il risultato:</p>
+    <div id="successSection" class="container success-section">
+        <h2 style="color: #4CAF50; margin-bottom: 15px;">🎉 Sito Creato!</h2>
+        <p>Arturo ha generato il tuo sito pub personalizzato</p>
         
         <div class="preview-area">
             <div id="sitePreview">
-                <!-- Il sito generato apparirà qui -->
+                <!-- Anteprima sito -->
             </div>
         </div>
         
         <div class="action-buttons">
             <button onclick="copyHTML()" class="action-btn">📋 Copia Codice HTML</button>
             <button onclick="downloadHTML()" class="action-btn">💾 Scarica File HTML</button>
-            <button onclick="testAgain()" class="action-btn">🔄 Parla con Arturo</button>
+            <button onclick="newChat()" class="action-btn" style="background: #8B4513; color: white;">🔄 Nuovo Sito</button>
         </div>
         
-        <p><strong>Come testare:</strong> Copia il codice in un file .html e aprilo nel browser!</p>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">
+            <strong>Come usare:</strong> Copia il codice in un file .html e aprilo nel browser
+        </p>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p><strong>Drinking SaaS</strong> - Siti web per pub e birrerie</p>
+        <p style="margin-top: 8px; opacity: 0.8; font-size: 14px;">Fase Test - Feedback a info@drinking-saas.it</p>
+    </footer>
+
     <script>
-        // Chat Elements
+        // Elementi DOM
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
-        const chatSend = document.getElementById('chatSend');
-        const typingIndicator = document.getElementById('typingIndicator');
         const progressFill = document.getElementById('progressFill');
         const progressText = document.getElementById('progressText');
         const successSection = document.getElementById('successSection');
         const sitePreview = document.getElementById('sitePreview');
 
-        let conversationStep = 0;
-        const totalSteps = 5;
-        const userData = {};
+        // Dati utente
+        let userData = {};
+        let currentStep = 0;
+        const totalSteps = 3;
 
-        // Update Progress
-        function updateProgress() {
-            const progress = (conversationStep / totalSteps) * 100;
-            progressFill.style.width = progress + '%';
-            progressText.textContent = Math.round(progress) + '%';
-        }
-
-        // Send Message
+        // Invia messaggio
         function sendMessage() {
             const message = chatInput.value.trim();
             if (message) {
                 addMessage(message, 'user');
                 chatInput.value = '';
-                
-                typingIndicator.style.display = 'flex';
-                
-                setTimeout(() => {
-                    typingIndicator.style.display = 'none';
-                    arturoResponse(message);
-                }, 1500);
+                processUserInput(message);
             }
         }
 
-        // Quick Reply
+        // Risposta rapida
         function sendQuickReply(reply) {
             addMessage(reply, 'user');
-            
-            typingIndicator.style.display = 'flex';
-            
-            setTimeout(() => {
-                typingIndicator.style.display = 'none';
-                arturoResponse(reply);
-            }, 1000);
+            processUserInput(reply);
         }
 
-        // Add Message to Chat
+        // Aggiungi messaggio alla chat
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}-message`;
@@ -641,315 +491,147 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Arturo's Responses - VERSIONE MIGLIORATA E SPIRITOSA
-        function arturoResponse(userMessage) {
+        // Processa input utente
+        function processUserInput(input) {
             let response = '';
             let quickReplies = '';
 
-            // Battute casuali di Arturo
-            const arturoJokes = [
-                "🍻 Perché la birra è il miglior detective? Perché risolve sempre i casi... di sete!",
-                "🎭 Come si chiama una birra che fa yoga? Una birra... flessibile!",
-                "🤔 Perché la birra non va mai in ufficio? Perché è sempre in fer... mentazione!",
-                "🍺 Cosa dice una birra all'altra? Ci vediamo allo... stomaco!",
-                "🎯 Perché la birra è come un amico? Perché la migliore è sempre... quella artigianale!"
-            ];
-
-            const randomJoke = arturoJokes[Math.floor(Math.random() * arturoJokes.length)];
-
-            if (userMessage.includes('iniziamo') || userMessage.includes('pronto') || conversationStep === 0) {
-                response = `🎉 Perfetto! Allora partiamo!\n\n${randomJoke}\n\nCome si chiama il tuo pub? 🏠\n(Dimmi il nome che fa venire voglia di una birra!)`;
-                conversationStep = 1;
+            if (input.includes('Pronto') || input.includes('Test') || currentStep === 0) {
+                response = "Perfetto! Iniziamo subito. 🚀\n\nCome si chiama il tuo pub?";
+                currentStep = 1;
             }
-            else if (userMessage.includes('come funziona') || userMessage.includes('funziona')) {
-                response = `🤖 **COME FUNZIONA ARTURO (FASE TEST)**:\n\n1. 💬 Chiacchieriamo del tuo pub (5 min)\n2. 🎨 Creo il design perfetto automaticamente\n3. ⚡ Sito pronto in 24 ore\n4. 🆓 **TESTI TUTTO GRATIS!** 🎉\n5. 📱 Inizi a ricevere ordini WhatsApp!\n\n${randomJoke}\n\nFacile no? Vuoi iniziare?`;
-                quickReplies = `
-                    <button class="quick-reply fun" onclick="sendQuickReply('Si, iniziamo subito!')">🚀 Si, iniziamo!</button>
-                    <button class="quick-reply" onclick="sendQuickReply('Ho ancora dubbi')">🤔 Ancora dubbi</button>
-                `;
+            else if (currentStep === 1) {
+                userData.pubName = input;
+                response = `Ottimo nome! "${input}" 🏠\n\nOra inserisci il numero WhatsApp per gli ordini:\n(Formato: +39 123 456 7890)`;
+                currentStep = 2;
             }
-            else if (userMessage.includes('esempio') || userMessage.includes('vedi esempio')) {
-                response = `🔗 Ecco un pub esempio che ho creato:\nhttps://lucio1962.github.io/drinking-pub-2024/\n\n${randomJoke}\n\nPuoi provare a fare un ordine tramite WhatsApp! È così che funzionerà il tuo sito.\n\nTi piace? Vuoi creare qualcosa di simile?`;
-                quickReplies = `
-                    <button class="quick-reply fun" onclick="sendQuickReply('Si, voglio un sito così!')">🎯 Si, voglio un sito così!</button>
-                    <button class="quick-reply" onclick="sendQuickReply('Posso personalizzarlo?')">🎨 Personalizzazione</button>
-                `;
+            else if (currentStep === 2) {
+                userData.whatsapp = input;
+                response = `Grazie! 📱 ${input}\n\nOra dimmi le tue birre principali:\n(Es: IPA - €5, Lager - €4, Stout - €6)\n\nPuoi scrivere una birra per linea`;
+                currentStep = 3;
             }
-            else if (conversationStep === 1) {
-                userData.pubName = userMessage;
-                response = `🏠 "${userMessage}" - Che bel nome! Già mi viene voglia di una birra! 🍺\n\n${randomJoke}\n\nOra dimmi, che tipo di pub sei? Sei più:\n• 🎯 Birreria artigianale\n• 🏴‍☠️ Pub tradizionale\n• 🌟 Locale moderno\n• 🍕 Pub con cucina\n\nRaccontami un po'!`;
-                conversationStep = 2;
-            }
-            else if (conversationStep === 2) {
-                userData.specialty = userMessage;
-                response = `🎯 Ottima scelta! "${userMessage}" ha sempre il suo perché!\n\n${randomJoke}\n\nOra parliamo delle birre! Quante birre vuoi nel menu? 🍻\n\n💡 Consiglio di Arturo: Inizia con 4-5 birre di qualità invece di tante opzioni mediocri!`;
-                conversationStep = 3;
-            }
-            else if (conversationStep === 3) {
-                userData.beerCount = userMessage;
-                response = `🍺 ${userMessage} birre - Perfetto! Qualità over quantità, come dico sempre io!\n\n${randomJoke}\n\nOra l'ultimo passo: qual è il numero WhatsApp dove vuoi ricevere gli ordini? 📱\n\n(In formato internazionale, es: +39 123 456 7890)`;
-                conversationStep = 4;
-            }
-            else if (conversationStep === 4) {
-                userData.whatsapp = userMessage;
-                response = `📱 ${userMessage} - Registrato!\n\n🎉 **COMPLIMENTI!** 🎉\n\n${randomJoke}\n\nHo tutte le informazioni per creare il tuo sito pub da sballo!\n\nRicapitolando:\n• 🏠 Pub: ${userData.pubName}\n• 🎯 Tipo: ${userData.specialty}\n• 🍺 Birre: ${userData.beerCount}\n• 📱 WhatsApp: ${userData.whatsapp}\n\nOra creo la magia! Pronto per vedere il risultato?`;
-                conversationStep = 5;
+            else if (currentStep === 3) {
+                userData.beers = input.split('\n').filter(line => line.trim());
+                response = "🎉 Perfetto! Ho tutte le informazioni.\n\nSto generando il tuo sito pub professionale...";
                 
-                quickReplies = `
-                    <button class="quick-reply fun" onclick="sendQuickReply('Si, crea il mio sito!')">✨ Si, crea la magia!</button>
-                `;
+                // Genera il sito dopo 2 secondi
+                setTimeout(generateSite, 2000);
             }
-            else if (userMessage.includes('crea') || userMessage.includes('magia')) {
-                response = `⚡ **MAGIA IN CORSO!** ⚡\n\nSto creando il tuo sito...\n🎨 Design ottimizzato ✓\n📱 WhatsApp integrato ✓\n🍺 Menu birre personalizzato ✓\n📱 Mobile responsive ✓\n\n${randomJoke}\n\n🎉 **SITO CREATO!** 🎉\n\nEcco il tuo sito pub personalizzato!`;
-                
-                // 🧪 GENERA IL SITO SUBITO - FASE TEST
-                setTimeout(() => {
-                    generateArturoSite();
-                }, 2000);
-            }
-            else {
-                response = `🍻 Scusa, forse ho bevuto troppa birra! Non ho capito bene...\n\n${randomJoke}\n\nPosso aiutarti a:\n• Creare il sito del tuo pub\n• Scegliere le birre del menu\n• Configurare gli ordini WhatsApp\n• Ottimizzare il design\n\nCosa ti interessa?`;
-                quickReplies = `
-                    <button class="quick-reply" onclick="sendQuickReply('Voglio creare un sito pub')">🏠 Crea sito pub</button>
-                    <button class="quick-reply" onclick="sendQuickReply('Consigli sulle birre')">🍺 Consigli birre</button>
-                `;
-            }
-            
-            addMessage(response, 'bot');
-            
-            if (quickReplies) {
-                setTimeout(() => {
-                    const quickRepliesDiv = document.createElement('div');
-                    quickRepliesDiv.className = 'quick-replies';
-                    quickRepliesDiv.innerHTML = quickReplies;
-                    chatMessages.appendChild(quickRepliesDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 100);
-            }
-            
+
+            // Aggiorna progresso
             updateProgress();
+            
+            // Mostra risposta
+            setTimeout(() => {
+                addMessage(response, 'bot');
+                
+                // Aggiungi quick replies se necessario
+                if (quickReplies) {
+                    const repliesDiv = document.createElement('div');
+                    repliesDiv.className = 'quick-replies';
+                    repliesDiv.innerHTML = quickReplies;
+                    chatMessages.appendChild(repliesDiv);
+                }
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
         }
 
-        // 🧪 FUNZIONE PER GENERARE IL SITO DI ARTURO - FASE TEST
-        function generateArturoSite() {
-            console.log("🎯 Generazione sito Arturo avviata...", userData);
-            
-            // Assicurati che userData esista
-            if (!userData.pubName) {
-                alert("❌ Errore: Dati mancanti. Ricomincia la conversazione con Arturo.");
+        // Aggiorna barra progresso
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '% completato';
+        }
+
+        // Genera sito
+        function generateSite() {
+            if (!userData.pubName || !userData.whatsapp) {
+                addMessage("Mi servono nome pub e WhatsApp per generare il sito. Ricominciamo?", 'bot');
                 return;
             }
-            
-            // Genera il codice HTML
+
             const htmlContent = `
-<!DOCTYPE html>
+<div style="background: #F5F5DC; min-height: 300px; border-radius: 10px; overflow: hidden;">
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #2C1810, #8B4513); color: white; padding: 25px 20px; text-align: center;">
+        <h1 style="color: #FFD700; margin: 0; font-size: 24px;">${userData.pubName}</h1>
+        <p style="margin: 10px 0 0 0; font-size: 16px;">Birre artigianali di qualità</p>
+    </div>
+    
+    <!-- Menu Birre -->
+    <div style="padding: 20px;">
+        <h2 style="color: #8B4513; text-align: center; margin-bottom: 15px;">🍺 Le Nostre Birre</h2>
+        ${userData.beers ? userData.beers.map(beer => `
+            <div style="background: white; padding: 12px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #FFD700;">
+                <div style="font-weight: bold; color: #8B4513;">${beer}</div>
+            </div>
+        `).join('') : `
+            <div style="background: white; padding: 12px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #FFD700;">
+                <div style="font-weight: bold; color: #8B4513;">IPA Artigianale - €5,00</div>
+            </div>
+            <div style="background: white; padding: 12px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #FFD700;">
+                <div style="font-weight: bold; color: #8B4513;">Lager Chiara - €4,00</div>
+            </div>
+            <div style="background: white; padding: 12px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #FFD700;">
+                <div style="font-weight: bold; color: #8B4513;">Stout Scura - €6,00</div>
+            </div>
+        `}
+    </div>
+    
+    <!-- WhatsApp -->
+    <div style="background: #8B4513; color: white; padding: 25px 20px; text-align: center;">
+        <h2 style="margin-bottom: 10px;">📱 Ordina su WhatsApp</h2>
+        <a href="https://wa.me/${userData.whatsapp}?text=Ciao ${userData.pubName}! Vorrei ordinare" 
+           style="background: #25D366; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin: 10px 0;">
+            Ordina Ora
+        </a>
+        <p style="margin-top: 10px;"><strong>${userData.whatsapp}</strong></p>
+    </div>
+    
+    <!-- Footer -->
+    <div style="background: #2C1810; color: white; padding: 20px; text-align: center;">
+        <p><strong>${userData.pubName}</strong></p>
+        <p style="opacity: 0.8; margin-top: 5px;">Creato con Arturo AI - Drinking SaaS</p>
+    </div>
+</div>`;
+
+            // Mostra anteprima
+            sitePreview.innerHTML = htmlContent;
+            
+            // Salva HTML globale
+            window.generatedHTML = `<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${userData.pubName} - Creato con Arturo AI</title>
+    <title>${userData.pubName}</title>
     <style>
-        /* STILE OTTIMIZZATO DA ARTURO */
-        :root {
-            --primary: #8B4513;
-            --secondary: #D2691E;
-            --accent: #FFD700;
-            --dark: #2C1810;
-            --light: #F5F5DC;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--dark), var(--primary));
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .header h1 {
-            color: var(--accent);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .menu-section {
-            padding: 3rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .beer-item {
-            background: white;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--accent);
-        }
-        
-        .beer-name {
-            font-weight: bold;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        
-        .whatsapp-section {
-            background: var(--primary);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-        
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: scale(1.05);
-        }
-        
-        .footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .menu-section {
-                padding: 2rem 1rem;
-            }
-        }
+        body { font-family: Arial, sans-serif; margin: 0; background: #F5F5DC; color: #2C1810; }
     </style>
 </head>
-<body>
-    <!-- HEADER CREATO DA ARTURO -->
-    <div class="header">
-        <h1>${userData.pubName}</h1>
-        <p>${userData.specialty || 'Birre artigianali di qualità'} • ${userData.beerCount || '4'} birre selezionate</p>
-    </div>
-    
-    <!-- MENU BIRRE -->
-    <div class="menu-section">
-        <h2 style="color: var(--primary); text-align: center; margin-bottom: 2rem;">🍺 Le Nostre Birre</h2>
-        
-        <!-- Birre generate automaticamente da Arturo -->
-        <div class="beer-item">
-            <div class="beer-name">IPA Artigianale - €6,00</div>
-            <div style="color: #666; margin-top: 0.5rem;">Birra amaricata con sentori di agrumi e pinoli</div>
-        </div>
-        
-        <div class="beer-item">
-            <div class="beer-name">Lager Chiara - €5,00</div>
-            <div style="color: #666; margin-top: 0.5rem;">Birra leggera e rinfrescante, perfetta per ogni occasione</div>
-        </div>
-        
-        <div class="beer-item">
-            <div class="beer-name">Stout Scura - €7,00</div>
-            <div style="color: #666; margin-top: 0.5rem;">Birra corposa con note di caffè e cioccolato</div>
-        </div>
-        
-        ${userData.beerCount > 3 ? `
-        <div class="beer-item">
-            <div class="beer-name">Weissbier - €6,50</div>
-            <div style="color: #666; margin-top: 0.5rem;">Birra di frumento con aromi fruttati e speziati</div>
-        </div>
-        ` : ''}
-    </div>
-    
-    <!-- WHATSAPP SECTION -->
-    <div class="whatsapp-section">
-        <h2>📱 Ordina su WhatsApp</h2>
-        <p>Consegna a domicilio o ritiro in pub</p>
-        
-        <a href="https://wa.me/${userData.whatsapp}?text=Ciao ${userData.pubName}! Vorrei ordinare delle birre" 
-           class="whatsapp-btn" target="_blank">
-            Clicca qui per ordinare
-        </a>
-        
-        <p style="margin-top: 1rem;"><strong>${userData.whatsapp}</strong></p>
-        
-        <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px; display: inline-block;">
-            <strong>💡 Consiglio di Arturo:</strong><br>
-            Rispondi sempre entro 5 minuti per aumentare le conversioni!
-        </div>
-    </div>
-    
-    <!-- FOOTER -->
-    <div class="footer">
-        <p><strong>${userData.pubName}</strong></p>
-        <p>${userData.specialty || 'Birre artigianali di qualità'}</p>
-        <p style="margin-top: 1rem; opacity: 0.8;">
-            🍻 Creato con l'AI di Arturo - Drinking SaaS
-        </p>
-    </div>
-</body>
+<body>${htmlContent}</body>
 </html>`;
-            
-            // Mostra l'anteprima
-            sitePreview.innerHTML = htmlContent;
-            
-            // Mostra la sezione successo
+
+            // Mostra sezione successo
             successSection.style.display = 'block';
             successSection.scrollIntoView({ behavior: 'smooth' });
             
-            // Salva l'HTML generato
-            window.generatedHTML = htmlContent;
-            
-            console.log("✅ Sito Arturo generato con successo!");
+            addMessage("✅ Sito generato con successo! Guarda l'anteprima qui sotto.", 'bot');
         }
 
         // Copia HTML
         function copyHTML() {
             if (!window.generatedHTML) {
-                alert("❌ Nessun sito generato. Parla prima con Arturo!");
+                alert("Prima genera un sito con Arturo");
                 return;
             }
             
-            const fullHTML = `<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sito Pub Creato con Arturo AI</title>
-</head>
-<body>
-    ${window.generatedHTML}
-</body>
-</html>`;
-            
-            navigator.clipboard.writeText(fullHTML).then(() => {
-                alert('✅ Codice HTML copiato! Incollalo in un file .html e aprilo nel browser.');
-            }).catch(err => {
-                // Fallback
+            navigator.clipboard.writeText(window.generatedHTML).then(() => {
+                alert('✅ Codice copiato! Incollalo in un file .html');
+            }).catch(() => {
                 const textarea = document.createElement('textarea');
-                textarea.value = fullHTML;
+                textarea.value = window.generatedHTML;
                 document.body.appendChild(textarea);
                 textarea.select();
                 document.execCommand('copy');
@@ -957,86 +639,51 @@
                 alert('✅ Codice copiato!');
             });
         }
-        
+
         // Download HTML
         function downloadHTML() {
             if (!window.generatedHTML) {
-                alert("❌ Nessun sito generato. Parla prima con Arturo!");
+                alert("Prima genera un sito con Arturo");
                 return;
             }
             
-            const fullHTML = `<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sito Pub Creato con Arturo AI</title>
-</head>
-<body>
-    ${window.generatedHTML}
-</body>
-</html>`;
-            
-            const blob = new Blob([fullHTML], { type: 'text/html' });
+            const blob = new Blob([window.generatedHTML], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'mio-pub-arturo.html';
+            a.download = 'mio-pub.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             
-            alert('✅ File scaricato! Apri "mio-pub-arturo.html" nel browser.');
+            alert('✅ File scaricato! Apri "mio-pub.html" nel browser.');
         }
-        
-        // Test Again
-        function testAgain() {
+
+        // Nuova chat
+        function newChat() {
             successSection.style.display = 'none';
-            // Resetta la conversazione
-            conversationStep = 0;
-            Object.keys(userData).forEach(key => delete userData[key]);
-            progressFill.style.width = '0%';
-            progressText.textContent = '0%';
+            userData = {};
+            currentStep = 0;
+            updateProgress();
             
-            // Aggiungi messaggio di Arturo
-            addMessage("Ciao di nuovo! Sono pronto per creare un altro sito fantastico! 🍺\n\nCome si chiama il tuo prossimo pub?", 'bot');
-            
+            addMessage("Pronto per creare un nuovo sito! Come si chiama il tuo pub?", 'bot');
             window.scrollTo(0, 0);
         }
 
-        // Event Listeners
-        chatSend.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+        // Test veloce
+        function testGenerate() {
+            userData = {
+                pubName: "Il Mio Pub",
+                whatsapp: "+391234567890",
+                beers: ["IPA Artigianale - €5,00", "Lager Chiara - €4,00", "Stout Scura - €6,00"]
+            };
+            addMessage("🧪 Test veloce - Generazione sito demo...", 'user');
+            setTimeout(() => generateSite(), 1000);
+        }
 
-        // Auto-start conversation con battuta
-        setTimeout(() => {
-            if (conversationStep === 0) {
-                const welcomeJokes = [
-                    "💡 Psst... Sono ancora qui! Pronto a creare il tuo sito pub? 🍺\n\n🎭 Battuta: Perché la birra è sempre puntuale? Perché ha l'or...ologio della fermentazione!",
-                    "🍻 Ciao! Ancora indeciso? Ti aiuto a creare un sito che farà venire voglia di birra anche ai astemi!",
-                    "🤖 Arturo qui! Pronto a trasformare la tua passione birraia in un sito fantastico? 🎯"
-                ];
-                const randomWelcome = welcomeJokes[Math.floor(Math.random() * welcomeJokes.length)];
-                
-                addMessage(randomWelcome, 'bot');
-                
-                setTimeout(() => {
-                    const quickRepliesDiv = document.createElement('div');
-                    quickRepliesDiv.className = 'quick-replies';
-                    quickRepliesDiv.innerHTML = `
-                        <button class="quick-reply fun" onclick="sendQuickReply('Si, iniziamo!')">🚀 Si, iniziamo!</button>
-                        <button class="quick-reply" onclick="sendQuickReply('Più tardi')">⏰ Più tardi</button>
-                    `;
-                    chatMessages.appendChild(quickRepliesDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 500);
-            }
-        }, 30000);
+        // Auto-focus sull'input
+        chatInput.focus();
     </script>
 </body>
 </html>
