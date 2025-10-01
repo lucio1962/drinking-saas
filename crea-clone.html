@@ -517,8 +517,10 @@ Weissbier - €5,50"></textarea>
     </footer>
 
     <script>
-        // Funzione principale per generare il sito clone
+        // Funzione principale per generare il sito clone - VERSIONE CORRETTA
         function generateCloneSite() {
+            console.log("🚀 Generazione sito clone avviata...");
+            
             // Raccogli dati dal form
             const userData = {
                 pubName: document.getElementById('pubName').value.trim(),
@@ -527,6 +529,8 @@ Weissbier - €5,50"></textarea>
                 address: document.getElementById('pubAddress').value.trim() || '',
                 beers: document.getElementById('beerList').value.split('\n').filter(line => line.trim()).map(line => line.trim())
             };
+            
+            console.log("Dati raccolti:", userData);
             
             // Validazione
             if (!userData.pubName || !userData.whatsapp || userData.beers.length === 0) {
@@ -547,6 +551,8 @@ Weissbier - €5,50"></textarea>
             document.getElementById('fileName').textContent = `${userData.pubName.toLowerCase().replace(/\s+/g, '-')}.html`;
             document.getElementById('successMessage').style.display = 'block';
             document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            console.log("✅ Sito clone generato con successo!");
         }
         
         // Genera HTML che clona ESATTAMENTE drinking-pub-2024
@@ -801,12 +807,14 @@ Weissbier - €5,50"></textarea>
             
             <div class="beer-grid">
                 ${userData.beers.map(beer => {
-                    const [name, price] = beer.split(' - ');
+                    const beerParts = beer.split(' - ');
+                    const name = beerParts[0] || beer;
+                    const price = beerParts[1] || '€5,00';
                     return `
                     <div class="beer-card">
                         <div class="beer-icon">🍺</div>
-                        <h3>${name || beer}</h3>
-                        <div class="beer-price">${price || '€5,00'}</div>
+                        <h3>${name}</h3>
+                        <div class="beer-price">${price}</div>
                         <p>Birra artigianale preparata con ingredienti di alta qualità e passione</p>
                     </div>
                     `;
@@ -869,51 +877,51 @@ Weissbier - €5,50"></textarea>
 </html>`;
         }
         
-        // Funzione per scaricare il file HTML
+        // Funzione per scaricare il file HTML - VERSIONE CORRETTA
         function downloadHTMLFile(content, pubName) {
-            const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = \`\${pubName.toLowerCase().replace(/\\s+/g, '-')}.html\`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            try {
+                const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = pubName.toLowerCase().replace(/\s+/g, '-') + '.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                console.log("✅ File scaricato:", a.download);
+            } catch (error) {
+                console.error("❌ Errore download:", error);
+                alert("❌ Errore nel download. Controlla la console per dettagli.");
+            }
         }
         
         // Funzioni di supporto
         function showSetupInstructions() {
-            const instructions = \`
-🧪 **ISTRUZIONI TEST CLONE**
+            const instructions = `🧪 ISTRUZIONI TEST CLONE
 
-1. **APRI IL FILE**:
+1. APRI IL FILE:
    • Doppio click sul file HTML scaricato
    • Si apre nel browser
    • Testa tutte le funzionalità
 
-2. **TEST ORDINI WHATSAPP**:
+2. TEST ORDINI WHATSAPP:
    • Clicca "Ordina su WhatsApp" 
    • Verifica che apra l'app correttamente
    • Testa su mobile e desktop
 
-3. **TEST DESIGN RESPONSIVE**:
+3. TEST DESIGN RESPONSIVE:
    • Ridimensiona la finestra del browser
    • Prova su smartphone (F12 > Device Toolbar)
    • Verifica che sia mobile-friendly
 
-4. **HOSTING TEST** (Opzionale):
-   • Netlify.com - Drag & drop del file
-   • Il sito sarà online in 2 minuti
-
-📊 **COSA TESTARE**:
+📊 COSA TESTARE:
 • Design identico a drinking-pub-2024 ✓
 • Funzionamento ordini WhatsApp ✓  
 • Responsive su tutti i dispositivi ✓
 • Velocità di caricamento ✓
 
-💡 Invia feedback a: info@drinking-saas.it
-\`;
+💡 Invia feedback a: info@drinking-saas.it`;
             alert(instructions);
         }
         
@@ -923,16 +931,16 @@ Weissbier - €5,50"></textarea>
             window.scrollTo(0, 0);
         }
         
-        // Auto-fill con dati di esempio per testing
+        // Test automatico - RIMUOVI IN PRODUZIONE
         function fillExampleData() {
             document.getElementById('pubName').value = 'Il Mio Pub Fantastico';
             document.getElementById('pubSlogan').value = 'Le migliori birre artigianali della città';
             document.getElementById('whatsappNumber').value = '+39 123 456 7890';
             document.getElementById('pubAddress').value = 'Via Roma 123, Milano';
-            document.getElementById('beerList').value = 'IPA Artigianale - €5,00\\nLager Chiara - €4,00\\nStout Scura - €6,00\\nWeissbier - €5,50';
+            document.getElementById('beerList').value = 'IPA Artigianale - €5,00\nLager Chiara - €4,00\nStout Scura - €6,00\nWeissbier - €5,50';
         }
         
-        // Rimuovi questa riga in produzione - solo per testing
+        // Auto-fill per testing - ATTIVA SOLO PER TEST
         // fillExampleData();
     </script>
 </body>
