@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drinking - Crea il Sito del Tuo Pub</title>
+    <title>Sito Premium Pub - €9,90 - Drinking</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -29,7 +29,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         
         .logo {
@@ -38,105 +37,92 @@
             color: var(--accent);
         }
         
-        .hero {
-            background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.9));
-            background-size: cover;
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
         
-        .btn-primary {
-            background: var(--secondary);
-            color: white;
-            padding: 12px 30px;
+        .premium-banner {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: var(--dark);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .creation-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+        
+        .btn-premium {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 40px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
-            margin: 10px;
             border: none;
             cursor: pointer;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
-        .btn-primary:hover {
-            background: var(--accent);
-            color: var(--dark);
+        .btn-premium:hover {
+            background: var(--secondary);
+            color: white;
             transform: translateY(-2px);
         }
         
-        .pricing-cards {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+        .benefits {
+            background: var(--dark);
+            color: white;
             padding: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .card {
-            background: white;
             border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 2px solid var(--primary);
-            max-width: 300px;
-            text-align: center;
+            margin-top: 2rem;
         }
         
-        .card.popular {
-            border-color: var(--accent);
-            transform: scale(1.05);
-            position: relative;
-        }
-        
-        .card.popular::before {
-            content: "PIÙ SCELTO";
-            background: var(--accent);
-            color: var(--dark);
-            padding: 5px 15px;
-            border-radius: 15px;
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .price {
-            font-size: 2rem;
-            color: var(--primary);
-            font-weight: bold;
+        .benefit-item {
+            display: flex;
+            align-items: center;
             margin: 1rem 0;
         }
         
-        .features {
-            background: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .feature-item {
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: 10px;
-            border-left: 4px solid var(--secondary);
-        }
-        
-        footer {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--accent);
         }
     </style>
 </head>
@@ -144,99 +130,120 @@
     <header class="header">
         <div class="logo">DRINKING</div>
         <nav>
-            <a href="#demo" style="color: white; margin: 0 15px; text-decoration: none;">Vedi Demo</a>
-            <a href="#prezzi" style="color: white; margin: 0 15px; text-decoration: none;">Prezzi</a>
-            <a href="#funziona" style="color: white; margin: 0 15px; text-decoration: none;">Come Funziona</a>
+            <a href="vendita.html" style="color: white; margin: 0 15px; text-decoration: none;">← Torna alla Vendita</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Il Sito del Tuo Pub, Pronto in 5 Minuti</h1>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">Usa lo stesso sistema del nostro pub demo. Ordini WhatsApp, menu birre, design professionale.</p>
-        
-        <div>
-            <a href="crea-gratis.html" class="btn-primary">Crea Gratis</a>
-            <a href="crea-premium.html" class="btn-primary" style="background: var(--accent); color: var(--dark);">
-                Sito Premium - €9,90
-            </a>
+    <div class="container">
+        <div class="premium-banner">
+            <h1 style="margin: 0; font-size: 2.2rem;">Sito Pub Premium - €9,90</h1>
+            <p style="font-size: 1.2rem; margin: 0.5rem 0 0 0;">Design esclusivo + Assistenza prioritaria</p>
         </div>
         
-        <p style="margin-top: 2rem;">
-            <a href="index.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">
-                → Vedi il nostro pub demo funzionante
-            </a>
-        </p>
-    </section>
-
-    <section id="funziona" class="features">
-        <h2>Come Funziona Drinking</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h3>🚀 1. Scegli il Piano</h3>
-                <p>Gratis o Premium a €9,90 - Nessun impegno</p>
-            </div>
-            <div class="feature-item">
-                <h3>🎨 2. Personalizza</h3>
-                <p>Inserisci nome, menu e numero WhatsApp</p>
-            </div>
-            <div class="feature-item">
-                <h3>📱 3. Ricevi il Sito</h3>
-                <p>Il tuo pub online in pochi minuti</p>
-            </div>
-            <div class="feature-item">
-                <h3>🍺 4. Inizia a Vendere</h3>
-                <p>Ordini diretti sul tuo WhatsApp</p>
-            </div>
+        <div class="creation-form">
+            <form id="premiumForm">
+                <div class="form-group">
+                    <label for="pubName">Nome del tuo Pub *</label>
+                    <input type="text" id="pubName" name="pubName" required placeholder="Es: The Golden Hop">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pubDescription">Descrizione del Pub</label>
+                    <textarea id="pubDescription" name="pubDescription" rows="3" placeholder="Descrivi la tua birreria premium..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsappNumber">Numero WhatsApp per Ordini *</label>
+                    <input type="tel" id="whatsappNumber" name="whatsappNumber" required placeholder="Es: +39 123 456 7890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">La tua Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="tua@email.com">
+                </div>
+                
+                <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">Menu Birre Premium</h3>
+                
+                <div class="form-group">
+                    <label for="beer1">Birra Premium 1 *</label>
+                    <input type="text" id="beer1" name="beer1" required placeholder="Es: IPA Doppio Malto - €7,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer2">Birra Premium 2 *</label>
+                    <input type="text" id="beer2" name="beer2" required placeholder="Es: Stout Barley Wine - €8,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer3">Birra Premium 3</label>
+                    <input type="text" id="beer3" name="beer3" placeholder="Es: Triple Belgian - €9,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer4">Birra Premium 4</label>
+                    <input type="text" id="beer4" name="beer4" placeholder="Es: Imperial Porter - €10,00">
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn-premium">PAGA €9,90 E CREA IL SITO</button>
+                    <p style="font-size: 0.9rem; margin-top: 1rem; color: #666;">
+                        Pagamento sicuro • Garanzia soddisfatto o rimborsato
+                    </p>
+                </div>
+            </form>
         </div>
-    </section>
-
-    <section id="prezzi" style="padding: 3rem 2rem; text-align: center; background: var(--light);">
-        <h2 style="margin-bottom: 2rem;">Scegli il Piano Perfetto per il Tuo Pub</h2>
         
-        <div class="pricing-cards">
-            <div class="card">
-                <h3>GRATIS</h3>
-                <div class="price">€0</div>
-                <ul style="text-align: left; list-style: none; padding: 0;">
-                    <li style="margin: 10px 0;">✓ Sito base per pub</li>
-                    <li style="margin: 10px 0;">✓ Menu birre semplice</li>
-                    <li style="margin: 10px 0;">✓ Ordini WhatsApp</li>
-                    <li style="margin: 10px 0;">✓ Design standard</li>
-                </ul>
-                <a href="crea-gratis.html" class="btn-primary">CREA GRATIS</a>
+        <div class="benefits">
+            <h3 style="color: var(--accent); text-align: center;">Cosa ottieni con il Premium:</h3>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">🎨</div>
+                <div>
+                    <strong>Design Esclusivo</strong>
+                    <p>Template premium non disponibile nella versione gratis</p>
+                </div>
             </div>
             
-            <div class="card popular">
-                <h3>PREMIUM</h3>
-                <div class="price">€9,90</div>
-                <ul style="text-align: left; list-style: none; padding: 0;">
-                    <li style="margin: 10px 0;">✓ Tutto del Gratis</li>
-                    <li style="margin: 10px 0;">✓ Design personalizzato</li>
-                    <li style="margin: 10px 0;">✓ Menu birre completo</li>
-                    <li style="margin: 10px 0;">✓ Assistenza prioritaria</li>
-                    <li style="margin: 10px 0;">✓ Dominio personalizzato</li>
-                </ul>
-                <a href="crea-premium.html" class="btn-primary" style="background: var(--accent); color: var(--dark);">
-                    SCELGO PREMIUM
-                </a>
+            <div class="benefit-item">
+                <div class="benefit-icon">🚀</div>
+                <div>
+                    <strong>Setup in 24 ore</strong>
+                    <p>Il tuo sito online entro un giorno lavorativo</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">📞</div>
+                <div>
+                    <strong>Assistenza Prioritaria</strong>
+                    <p>Supporto dedicato per 6 mesi</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">🌐</div>
+                <div>
+                    <strong>Dominio Personalizzato</strong>
+                    <p>IlTuoPub.com incluso nel prezzo</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="demo" style="background: var(--dark); color: white; padding: 4rem 2rem; text-align: center;">
-        <h2 style="margin-bottom: 1rem;">Guarda la Demo Funzionante</h2>
-        <p style="margin-bottom: 2rem; font-size: 1.1rem;">Prova subito come funziona il sistema di ordini del tuo futuro pub:</p>
-        <a href="index.html" class="btn-primary" style="background: white; color: var(--dark); font-size: 1.1rem;">
-            🍺 PROVA IL PUB DEMO
-        </a>
-        <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
-            Puoi fare ordini reali tramite WhatsApp!
-        </p>
-    </section>
-
-    <footer>
-        <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking</strong> - Soluzioni digitali per pub e birrerie</p>
-        <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">📞 Contattaci: info@drinking.it</p>
-    </footer>
+    <script>
+        document.getElementById('premiumForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const pubName = document.getElementById('pubName').value;
+            
+            alert(`Perfetto ${pubName}! Reindirizzamento al pagamento sicuro...\n\nEmail: ${email}\nImporto: €9,90`);
+            
+            // Simulazione pagamento - in produzione qui andrebbe Stripe o PayPal
+            setTimeout(() => {
+                alert('Pagamento confermato! Il tuo sito pub premium sarà pronto entro 24 ore. Ti contatteremo via email.');
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
