@@ -1,1 +1,289 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizza Sito Pub - Drinking</title>
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --dark: #2C1810;
+            --light: #F5F5DC;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .customization-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+        }
+        
+        .preview-panel {
+            background: var(--dark);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .color-option.active {
+            border-color: var(--dark);
+        }
+        
+        .btn-save {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .btn-save:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .preview-header {
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .preview-beer {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">DRINKING</div>
+        <nav>
+            <a href="vendita.html" style="color: white; margin: 0 15px; text-decoration: none;">← Torna alla Vendita</a>
+        </nav>
+    </header>
 
+    <div class="container">
+        <div class="customization-panel">
+            <h2 style="color: var(--primary);">Personalizza il Tuo Sito Pub</h2>
+            
+            <form id="customizeForm">
+                <div class="form-group">
+                    <label for="pubName">Nome Pub</label>
+                    <input type="text" id="pubName" value="The Old Tavern">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pubSlogan">Slogan</label>
+                    <input type="text" id="pubSlogan" value="Birre artigianali e atmosfera unica">
+                </div>
+                
+                <div class="form-group">
+                    <label for="primaryColor">Colore Principale</label>
+                    <div class="color-options">
+                        <div class="color-option active" style="background: #8B4513;" data-color="#8B4513"></div>
+                        <div class="color-option" style="background: #D2691E;" data-color="#D2691E"></div>
+                        <div class="color-option" style="background: #A52A2A;" data-color="#A52A2A"></div>
+                        <div class="color-option" style="background: #CD853F;" data-color="#CD853F"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accentColor">Colore Accento</label>
+                    <div class="color-options">
+                        <div class="color-option active" style="background: #FFD700;" data-color="#FFD700"></div>
+                        <div class="color-option" style="background: #FFA500;" data-color="#FFA500"></div>
+                        <div class="color-option" style="background: #FF6347;" data-color="#FF6347"></div>
+                        <div class="color-option" style="background: #32CD32;" data-color="#32CD32"></div>
+                    </div>
+                </div>
+                
+                <h3 style="color: var(--primary); margin-top: 2rem;">Menu Birre</h3>
+                
+                <div class="form-group">
+                    <label for="beer1">Birra 1</label>
+                    <input type="text" id="beer1" value="IPA Artigianale - €5,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer2">Birra 2</label>
+                    <input type="text" id="beer2" value="Lager Chiara - €4,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer3">Birra 3</label>
+                    <input type="text" id="beer3" value="Stout Scura - €6,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsapp">Numero WhatsApp</label>
+                    <input type="text" id="whatsapp" value="+39 123 456 7890">
+                </div>
+                
+                <button type="submit" class="btn-save">SALVA E GENERA SITO</button>
+            </form>
+        </div>
+        
+        <div class="preview-panel">
+            <h3 style="color: var(--accent); text-align: center;">Anteprima Live</h3>
+            
+            <div class="preview-header">
+                <h2 id="previewName" style="margin: 0; color: var(--accent);">The Old Tavern</h2>
+                <p id="previewSlogan" style="margin: 0; opacity: 0.9;">Birre artigianali e atmosfera unica</p>
+            </div>
+            
+            <h4 style="color: var(--accent);">Le Nostre Birre:</h4>
+            
+            <div class="preview-beer" id="previewBeer1">IPA Artigianale - €5,00</div>
+            <div class="preview-beer" id="previewBeer2">Lager Chiara - €4,00</div>
+            <div class="preview-beer" id="previewBeer3">Stout Scura - €6,00</div>
+            
+            <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px;">
+                <p style="margin: 0;">📱 Ordina su WhatsApp:</p>
+                <strong id="previewWhatsapp" style="color: var(--accent);">+39 123 456 7890</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Aggiorna anteprima in tempo reale
+        const form = document.getElementById('customizeForm');
+        const inputs = form.querySelectorAll('input');
+        
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const targetId = 'preview' + this.id.charAt(0).toUpperCase() + this.id.slice(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.textContent = this.value;
+                }
+            });
+        });
+
+        // Gestione colori
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Rimuovi active da tutti i fratelli
+                this.parentElement.querySelectorAll('.color-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                // Aggiungi active a questo
+                this.classList.add('active');
+                
+                // Cambia colore in anteprima
+                const colorType = this.parentElement.previousElementSibling.textContent;
+                const colorValue = this.getAttribute('data-color');
+                
+                if (colorType.includes('Principale')) {
+                    document.querySelector('.preview-header').style.backgroundColor = colorValue;
+                } else if (colorType.includes('Accento')) {
+                    document.querySelectorAll('.preview-beer').forEach(beer => {
+                        beer.style.borderLeftColor = colorValue;
+                    });
+                    document.querySelectorAll('h2, h3, h4').forEach(heading => {
+                        if (heading.style.color === 'rgb(255, 215, 0)' || heading.id.includes('preview')) {
+                            heading.style.color = colorValue;
+                        }
+                    });
+                }
+            });
+        });
+
+        // Salva configurazione
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Configurazione salvata! Il tuo sito pub personalizzato è pronto.\n\nOra puoi procedere con il pagamento per attivarlo.');
+        });
+    </script>
+</body>
+</html>
