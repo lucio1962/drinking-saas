@@ -1,1 +1,237 @@
 
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea il Tuo Sito Pub Gratis - Drinking</title>
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --dark: #2C1810;
+            --light: #F5F5DC;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .creation-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .preview-section {
+            background: var(--dark);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .beer-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">DRINKING</div>
+        <nav>
+            <a href="vendita.html" style="color: white; margin: 0 15px; text-decoration: none;">← Torna alla Vendita</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 style="text-align: center; color: var(--primary);">Crea il Sito del Tuo Pub Gratis</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Compila il form per generare il tuo sito pub personalizzato</p>
+        
+        <div class="creation-form">
+            <form id="pubForm">
+                <div class="form-group">
+                    <label for="pubName">Nome del tuo Pub *</label>
+                    <input type="text" id="pubName" name="pubName" required placeholder="Es: The Old Tavern">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pubDescription">Descrizione del Pub</label>
+                    <textarea id="pubDescription" name="pubDescription" rows="3" placeholder="Descrivi la tua birreria..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsappNumber">Numero WhatsApp per Ordini *</label>
+                    <input type="tel" id="whatsappNumber" name="whatsappNumber" required placeholder="Es: +39 123 456 7890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pubAddress">Indirizzo del Pub</label>
+                    <input type="text" id="pubAddress" name="pubAddress" placeholder="Es: Via Roma 123, Milano">
+                </div>
+                
+                <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">Menu Birre</h3>
+                
+                <div class="form-group">
+                    <label for="beer1">Birra 1 *</label>
+                    <input type="text" id="beer1" name="beer1" required placeholder="Es: IPA Artigianale - €5,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer2">Birra 2 *</label>
+                    <input type="text" id="beer2" name="beer2" required placeholder="Es: Lager Chiara - €4,00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beer3">Birra 3</label>
+                    <input type="text" id="beer3" name="beer3" placeholder="Es: Stout Scura - €6,00">
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn-primary">CREA IL MIO SITO GRATIS</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="preview-section">
+            <h3>Anteprima del Tuo Sito Pub</h3>
+            <p>Il tuo sito avrà questo aspetto professionale:</p>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
+                <h4 id="previewName" style="color: var(--accent); margin: 0;">The Old Tavern</h4>
+                <p id="previewDesc" style="margin: 0.5rem 0;">Birreria artigianale con specialità locali</p>
+                
+                <div class="beer-item">
+                    <strong id="previewBeer1">IPA Artigianale - €5,00</strong>
+                </div>
+                <div class="beer-item">
+                    <strong id="previewBeer2">Lager Chiara - €4,00</strong>
+                </div>
+                <div class="beer-item">
+                    <strong id="previewBeer3">Stout Scura - €6,00</strong>
+                </div>
+                
+                <p style="margin-top: 1rem;">
+                    <strong>Ordina ora su WhatsApp:</strong><br>
+                    <span id="previewWhatsApp">+39 123 456 7890</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Aggiorna l'anteprima in tempo reale
+        document.getElementById('pubForm').addEventListener('input', function(e) {
+            const field = e.target.id;
+            const value = e.target.value;
+            
+            switch(field) {
+                case 'pubName':
+                    document.getElementById('previewName').textContent = value || 'The Old Tavern';
+                    break;
+                case 'pubDescription':
+                    document.getElementById('previewDesc').textContent = value || 'Birreria artigianale con specialità locali';
+                    break;
+                case 'whatsappNumber':
+                    document.getElementById('previewWhatsApp').textContent = value || '+39 123 456 7890';
+                    break;
+                case 'beer1':
+                    document.getElementById('previewBeer1').textContent = value || 'IPA Artigianale - €5,00';
+                    break;
+                case 'beer2':
+                    document.getElementById('previewBeer2').textContent = value || 'Lager Chiara - €4,00';
+                    break;
+                case 'beer3':
+                    document.getElementById('previewBeer3').textContent = value || 'Stout Scura - €6,00';
+                    break;
+            }
+        });
+
+        // Gestione invio form
+        document.getElementById('pubForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Ottimo! Il tuo sito pub è in fase di creazione. Ti contatteremo via email entro 24 ore.');
+            // Qui andrebbe la logica per generare il sito
+        });
+    </script>
+</body>
+</html>
