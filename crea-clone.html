@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧪 TEST - Clona drinking-pub-2024 - Drinking SaaS</title>
+    <title>Clona Sito Demo - Drinking SaaS</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -25,7 +25,7 @@
             color: var(--dark);
             line-height: 1.6;
         }
-
+        
         .test-banner {
             background: linear-gradient(135deg, #4CAF50, #45a049);
             color: white;
@@ -209,17 +209,43 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin: 2rem 0;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
-
-        .download-section {
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .beer-examples {
+            background: var(--dark);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .beer-example {
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .success-section {
             display: none;
             background: white;
             padding: 2rem;
@@ -228,17 +254,38 @@
             margin: 2rem auto;
             text-align: center;
         }
-
+        
         .preview-area {
             background: var(--light);
             padding: 2rem;
             border-radius: 10px;
             margin: 2rem 0;
             border: 2px dashed var(--primary);
-            min-height: 200px;
+            min-height: 300px;
         }
-
-        .copy-btn {
+        
+        .code-area {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            text-align: left;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
             background: var(--accent);
             color: var(--dark);
             padding: 12px 25px;
@@ -246,13 +293,52 @@
             border: none;
             cursor: pointer;
             font-weight: bold;
-            margin: 0 10px;
             transition: all 0.3s ease;
         }
-
-        .copy-btn:hover {
+        
+        .action-btn:hover {
             background: var(--secondary);
             color: white;
+            transform: translateY(-2px);
+        }
+        
+        .clone-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .clone-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: var(--light);
+            padding: 0 1rem;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 0.5rem;
         }
         
         footer {
@@ -261,6 +347,21 @@
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .clone-steps {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .clone-steps::before {
+                display: none;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -315,6 +416,28 @@
         </div>
     </section>
 
+    <!-- Steps -->
+    <section class="container">
+        <div class="clone-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Personalizza</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Genera</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Scarica</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Testa</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Clone Form -->
     <section class="container">
         <div class="clone-form">
@@ -337,115 +460,180 @@
                 </div>
                 
                 <div class="form-group">
+                    <label for="pubAddress">📍 Indirizzo del Pub (Opzionale)</label>
+                    <input type="text" id="pubAddress" placeholder="Es: Via Roma 123, Milano">
+                </div>
+                
+                <div class="form-group">
                     <label for="beerList">🍺 Lista delle Tue Birre *</label>
-                    <textarea id="beerList" rows="4" required placeholder="IPA Artigianale - €5,00
+                    <textarea id="beerList" rows="4" required placeholder="Inserisci ogni birra su una nuova linea, con prezzo
+Es: 
+IPA Artigianale - €5,00
 Lager Chiara - €4,00
 Stout Scura - €6,00
 Weissbier - €5,50"></textarea>
                 </div>
                 
-                <button type="button" onclick="testGenerateSite()" class="btn-clone">
-                    🧪 GENERA SITO DI TEST GRATIS
+                <div class="beer-examples">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">💡 Esempi di Birre Popolari:</h4>
+                    <div class="beer-example">IPA India Pale Ale - €6,00</div>
+                    <div class="beer-example">Lager Pilsner - €5,00</div>
+                    <div class="beer-example">Stout Imperial - €7,50</div>
+                    <div class="beer-example">Weissbier Tedesca - €5,50</div>
+                    <div class="beer-example">APA American Pale Ale - €6,50</div>
+                </div>
+                
+                <button type="button" onclick="generateCloneSite()" class="btn-clone">
+                    🧪 CLONA drinking-pub-2024 - TEST GRATIS
                 </button>
+                
+                <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    🧪 Versione TEST - Prova tutto gratuitamente<br>
+                    📧 Invia feedback a info@drinking-saas.it
+                </p>
             </form>
         </div>
     </section>
 
-    <!-- Download Section -->
-    <div id="downloadSection" class="download-section">
-        <h2>🎉 SITO GENERATO CON SUCCESSO!</h2>
-        <p>Ecco il tuo sito clone di drinking-pub-2024:</p>
+    <!-- Success Section -->
+    <div id="successSection" class="success-section">
+        <h2 style="color: #4CAF50; margin-bottom: 1rem;">🎉 CLONE CREATO CON SUCCESSO!</h2>
+        <p>Il tuo sito clone di drinking-pub-2024 è pronto!</p>
         
         <div class="preview-area">
             <div id="sitePreview">
-                <!-- Il sito generato apparirà qui -->
+                <!-- L'anteprima del sito apparirà qui -->
             </div>
         </div>
-
-        <div style="margin: 2rem 0;">
-            <button onclick="copyHTML()" class="copy-btn">📋 Copia Codice HTML</button>
-            <button onclick="downloadHTML()" class="copy-btn">💾 Scarica File HTML</button>
-            <button onclick="testAgain()" class="copy-btn">🔄 Genera Altro Sito</button>
+        
+        <div class="action-buttons">
+            <button onclick="copyHTML()" class="action-btn">📋 Copia Codice HTML</button>
+            <button onclick="downloadHTML()" class="action-btn">💾 Scarica File HTML</button>
+            <button onclick="testAgain()" class="action-btn">🔄 Genera Altro Sito</button>
         </div>
-
+        
         <p><strong>Come testare:</strong> Copia il codice in un file .html e aprilo nel browser!</p>
     </div>
 
-    <script>
-        // Dati del sito generato
-        let generatedHTML = '';
-
-        // Funzione SEMPLICE per testare
-        function testGenerateSite() {
-            console.log("🚀 Test generazione sito...");
+    <!-- Features -->
+    <section class="container">
+        <h2 style="text-align: center; color: var(--primary); margin: 3rem 0 1rem;">✅ Cosa Ottieni con il Clone</h2>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <h3>Design Identico</h3>
+                <p>Stesso design, stessi colori, stesso layout</p>
+            </div>
             
-            // Raccogli dati
-            const pubName = document.getElementById('pubName').value.trim();
-            const slogan = document.getElementById('pubSlogan').value.trim() || 'Birre artigianali di qualità';
-            const whatsapp = document.getElementById('whatsappNumber').value.trim();
-            const beerText = document.getElementById('beerList').value.trim();
+            <div class="feature-item">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Perfect</h3>
+                <p>Responsive su tutti i dispositivi</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">🍺</div>
+                <h3>Menu Birre</h3>
+                <p>Sistema ordinazione già integrato</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>Test Immediato</h3>
+                <p>Prova tutto in 2 minuti</p>
+            </div>
+        </div>
+    </section>
 
-            // Validazione semplice
-            if (!pubName || !whatsapp || !beerText) {
-                alert('❌ Compila nome pub, WhatsApp e lista birre');
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Clona drinking-pub-2024</p>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">🧪 Fase Test - Invia feedback a info@drinking-saas.it</p>
+        </div>
+    </footer>
+
+    <script>
+        let generatedHTML = '';
+        
+        function generateCloneSite() {
+            console.log("Generazione sito clone avviata...");
+            
+            // Raccogli dati dal form
+            const userData = {
+                pubName: document.getElementById('pubName').value.trim(),
+                slogan: document.getElementById('pubSlogan').value.trim() || 'Birre artigianali di qualità',
+                whatsapp: document.getElementById('whatsappNumber').value.trim(),
+                address: document.getElementById('pubAddress').value.trim() || '',
+                beers: document.getElementById('beerList').value.split('\n').filter(line => line.trim())
+            };
+            
+            // Validazione
+            if (!userData.pubName || !userData.whatsapp || userData.beers.length === 0) {
+                alert('❌ Compila tutti i campi obbligatori: Nome pub, WhatsApp e almeno una birra');
                 return;
             }
-
-            // Processa birre
-            const beers = beerText.split('\n').filter(line => line.trim());
-
-            // Genera HTML semplice
-            generatedHTML = generateSimpleSite({
-                pubName: pubName,
-                slogan: slogan,
-                whatsapp: whatsapp,
-                beers: beers
-            });
-
+            
+            // 🧪 FASE TEST - RIMOSSO PAGAMENTO
+            if (!confirm('🧪 TEST GRATUITO\n\nGenerare il clone del sito demo?')) {
+                return;
+            }
+            
+            // Genera il sito
+            generatedHTML = generateSiteHTML(userData);
+            
             // Mostra anteprima
             document.getElementById('sitePreview').innerHTML = generatedHTML;
-            document.getElementById('downloadSection').style.display = 'block';
-            document.getElementById('downloadSection').scrollIntoView({ behavior: 'smooth' });
-
-            console.log("✅ Sito generato!");
+            document.getElementById('successSection').style.display = 'block';
+            document.getElementById('successSection').scrollIntoView({ behavior: 'smooth' });
+            
+            console.log("✅ Sito clone generato con successo!");
         }
-
-        // Genera sito SEMPLICE e FUNZIONANTE
-        function generateSimpleSite(data) {
+        
+        function generateSiteHTML(data) {
             return `
-<div style="background: #F5F5DC; min-height: 400px; padding: 20px; border-radius: 10px;">
-    <div style="background: #2C1810; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-        <h1 style="color: #FFD700; margin: 0;">${data.pubName}</h1>
-        <p style="margin: 10px 0 0 0;">${data.slogan}</p>
+<div style="background: #F5F5DC; min-height: 400px; border-radius: 10px; overflow: hidden;">
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #2C1810, #8B4513); color: white; padding: 2rem; text-align: center;">
+        <h1 style="color: #FFD700; margin: 0; font-size: 2rem;">${data.pubName}</h1>
+        <p style="margin: 10px 0 0 0; font-size: 1.1rem;">${data.slogan}</p>
     </div>
-
-    <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-        <h2 style="color: #8B4513;">🍺 Le Nostre Birre</h2>
+    
+    <!-- Menu Birre -->
+    <div style="padding: 2rem; max-width: 800px; margin: 0 auto;">
+        <h2 style="color: #8B4513; text-align: center; margin-bottom: 1.5rem;">🍺 Le Nostre Birre</h2>
         ${data.beers.map(beer => `
-            <div style="background: #F5F5DC; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #FFD700;">
-                <strong>${beer}</strong>
+            <div style="background: white; padding: 1rem; margin: 1rem 0; border-radius: 8px; border-left: 4px solid #FFD700; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <div style="font-weight: bold; color: #8B4513; font-size: 1.1rem;">${beer}</div>
+                <div style="color: #666; margin-top: 0.5rem;">Birra artigianale di alta qualità</div>
             </div>
         `).join('')}
     </div>
-
-    <div style="background: #8B4513; color: white; padding: 20px; border-radius: 10px; text-align: center;">
-        <h3>📱 Ordina su WhatsApp</h3>
-        <a href="https://wa.me/${data.whatsapp}?text=Ciao! Vorrei ordinare delle birre" 
-           style="background: #25D366; color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; display: inline-block; margin: 10px;">
-            Ordina ora
+    
+    <!-- WhatsApp Section -->
+    <div style="background: #8B4513; color: white; padding: 2rem; text-align: center;">
+        <h2 style="margin-bottom: 1rem;">📱 Ordina su WhatsApp</h2>
+        <p style="margin-bottom: 1rem;">Consegna a domicilio o ritiro in pub</p>
+        <a href="https://wa.me/${data.whatsapp}?text=Ciao ${data.pubName}! Vorrei ordinare delle birre" 
+           style="background: #25D366; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block;">
+            Clicca qui per ordinare
         </a>
-        <p><strong>${data.whatsapp}</strong></p>
+        <p style="margin-top: 1rem;"><strong>${data.whatsapp}</strong></p>
+        ${data.address ? `<div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px; display: inline-block;">
+            <strong>📍</strong> ${data.address}
+        </div>` : ''}
     </div>
-
-    <div style="text-align: center; margin-top: 20px; padding: 20px; background: #2C1810; color: white; border-radius: 10px;">
+    
+    <!-- Footer -->
+    <div style="background: #2C1810; color: white; padding: 1.5rem; text-align: center;">
         <p><strong>${data.pubName}</strong> - ${data.slogan}</p>
-        <p style="opacity: 0.8;">Sito generato con Drinking SaaS</p>
+        <p style="opacity: 0.8; margin-top: 0.5rem;">Sito generato con Drinking SaaS</p>
     </div>
 </div>
             `;
         }
-
-        // Copia HTML
+        
         function copyHTML() {
             const fullHTML = `<!DOCTYPE html>
 <html lang="it">
@@ -457,45 +645,13 @@ Weissbier - €5,50"></textarea>
         body { 
             font-family: Arial, sans-serif; 
             margin: 0; 
-            padding: 20px; 
             background: #F5F5DC; 
             color: #2C1810; 
+            line-height: 1.6;
         }
         .container { 
             max-width: 800px; 
             margin: 0 auto; 
-        }
-        .header { 
-            background: linear-gradient(135deg, #2C1810, #8B4513); 
-            color: white; 
-            padding: 2rem; 
-            border-radius: 15px; 
-            text-align: center; 
-            margin-bottom: 2rem; 
-        }
-        .beer-item { 
-            background: white; 
-            padding: 1rem; 
-            margin: 1rem 0; 
-            border-radius: 8px; 
-            border-left: 4px solid #FFD700; 
-        }
-        .whatsapp-section { 
-            background: #8B4513; 
-            color: white; 
-            padding: 2rem; 
-            border-radius: 15px; 
-            text-align: center; 
-            margin: 2rem 0; 
-        }
-        .whatsapp-btn { 
-            background: #25D366; 
-            color: white; 
-            padding: 15px 30px; 
-            border-radius: 25px; 
-            text-decoration: none; 
-            display: inline-block; 
-            margin: 1rem; 
         }
     </style>
 </head>
@@ -505,16 +661,21 @@ Weissbier - €5,50"></textarea>
     </div>
 </body>
 </html>`;
-
+            
             navigator.clipboard.writeText(fullHTML).then(() => {
                 alert('✅ Codice HTML copiato! Incollalo in un file .html e aprilo nel browser.');
             }).catch(err => {
-                console.error('Errore copia:', err);
-                alert('❌ Errore nella copia. Controlla la console.');
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = fullHTML;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('✅ Codice copiato!');
             });
         }
-
-        // Download HTML
+        
         function downloadHTML() {
             const fullHTML = `<!DOCTYPE html>
 <html lang="it">
@@ -523,12 +684,17 @@ Weissbier - €5,50"></textarea>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sito Pub Generato</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #F5F5DC; color: #2C1810; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .header { background: linear-gradient(135deg, #2C1810, #8B4513); color: white; padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; }
-        .beer-item { background: white; padding: 1rem; margin: 1rem 0; border-radius: 8px; border-left: 4px solid #FFD700; }
-        .whatsapp-section { background: #8B4513; color: white; padding: 2rem; border-radius: 15px; text-align: center; margin: 2rem 0; }
-        .whatsapp-btn { background: #25D366; color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; display: inline-block; margin: 1rem; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background: #F5F5DC; 
+            color: #2C1810; 
+            line-height: 1.6;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
     </style>
 </head>
 <body>
@@ -537,7 +703,7 @@ Weissbier - €5,50"></textarea>
     </div>
 </body>
 </html>`;
-
+            
             const blob = new Blob([fullHTML], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -547,25 +713,23 @@ Weissbier - €5,50"></textarea>
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            
+            alert('✅ File scaricato! Apri "mio-pub.html" nel browser per testare.');
         }
-
-        // Genera altro sito
+        
         function testAgain() {
-            document.getElementById('downloadSection').style.display = 'none';
+            document.getElementById('successSection').style.display = 'none';
             document.getElementById('cloneForm').reset();
             window.scrollTo(0, 0);
         }
-
+        
         // Auto-fill per testing
-        function fillTestData() {
+        window.onload = function() {
             document.getElementById('pubName').value = 'Il Mio Pub Test';
-            document.getElementById('pubSlogan').value = 'Birre fantastiche per tutti';
+            document.getElementById('pubSlogan').value = 'Le migliori birre artigianali';
             document.getElementById('whatsappNumber').value = '+391234567890';
             document.getElementById('beerList').value = 'IPA Artigianale - €5,00\nLager Chiara - €4,00\nStout Scura - €6,00';
-        }
-
-        // Auto-fill per testing - ATTIVA PER PROVARE
-        fillTestData();
+        };
     </script>
 </body>
 </html>
