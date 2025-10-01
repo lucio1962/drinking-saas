@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalizza Sito Pub - Drinking</title>
+    <title>Personalizza Sito Pub - Drinking SaaS</title>
     <style>
         :root {
             --primary: #8B4513;
@@ -29,6 +29,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .logo {
@@ -37,30 +38,60 @@
             color: var(--accent);
         }
         
-        .container {
-            max-width: 1200px;
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-nav {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .btn-nav:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .personalize-hero {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .personalize-container {
+            max-width: 1400px;
             margin: 2rem auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 400px;
             gap: 2rem;
         }
         
         .customization-panel {
             background: white;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 2px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--primary);
         }
         
         .preview-panel {
             background: var(--dark);
             color: white;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             position: sticky;
             top: 2rem;
+            height: fit-content;
         }
         
         .form-group {
@@ -76,47 +107,51 @@
         
         input, textarea, select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
         
         input:focus, textarea:focus, select:focus {
             border-color: var(--secondary);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
         }
         
         .color-options {
             display: flex;
             gap: 10px;
             margin-top: 0.5rem;
+            flex-wrap: wrap;
         }
         
         .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
         }
         
         .color-option.active {
             border-color: var(--dark);
+            transform: scale(1.1);
         }
         
         .btn-save {
             background: var(--secondary);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
-            display: inline-block;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             width: 100%;
             margin-top: 1rem;
@@ -125,165 +160,713 @@
         .btn-save:hover {
             background: var(--accent);
             color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .preview-header {
             background: var(--primary);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 10px;
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .preview-beer {
             background: rgba(255,255,255,0.1);
             padding: 1rem;
             margin: 0.5rem 0;
-            border-radius: 5px;
+            border-radius: 8px;
             border-left: 4px solid var(--accent);
+        }
+        
+        .arturo-assistant {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: var(--dark);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        /* Chatbot Styles */
+        .chatbot-launcher {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--accent);
+            color: var(--dark);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: 3px solid var(--dark);
+        }
+        
+        .chatbot-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 25px;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+            border: 3px solid var(--dark);
+            overflow: hidden;
+        }
+        
+        .chatbot-header {
+            background: var(--dark);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            padding: 1rem;
+            border-radius: 18px;
+            max-width: 85%;
+            line-height: 1.4;
+            position: relative;
+            animation: messageAppear 0.3s ease-out;
+        }
+        
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bot-message {
+            background: var(--light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: var(--accent);
+            color: var(--dark);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .quick-reply {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quick-reply:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 1.2rem;
+            border-top: 2px solid var(--light);
+            background: white;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: var(--accent);
+        }
+        
+        .chatbot-send {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chatbot-send:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        .template-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .template-option {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .template-option.active {
+            border-color: var(--accent);
+            background: rgba(255,215,0,0.1);
+        }
+        
+        .template-option:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <div class="logo">DRINKING</div>
-        <nav>
-            <a href="vendita.html" style="color: white; margin: 0 15px; text-decoration: none;">← Torna alla Vendita</a>
-        </nav>
+        <div class="logo">DRINKING SaaS</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="btn-nav">← Torna alla Home</a>
+            <a href="https://lucio1962.github.io/drinking-pub-2024/" target="_blank" class="btn-nav">🍺 Vedi Demo</a>
+        </div>
     </header>
 
-    <div class="container">
+    <!-- Hero Section -->
+    <section class="personalize-hero">
+        <h1>🎨 Personalizza il Tuo Sito Pub</h1>
+        <p>Modifica colori, layout e contenuti in tempo reale</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="personalize-container">
+        <!-- Customization Panel -->
         <div class="customization-panel">
-            <h2 style="color: var(--primary);">Personalizza il Tuo Sito Pub</h2>
+            <h2 style="color: var(--primary); margin-bottom: 2rem;">Configura il Tuo Sito</h2>
             
             <form id="customizeForm">
+                <!-- Pub Info -->
                 <div class="form-group">
-                    <label for="pubName">Nome Pub</label>
-                    <input type="text" id="pubName" value="The Old Tavern">
+                    <label for="pubName">🏠 Nome del Pub</label>
+                    <input type="text" id="pubName" value="The Old Tavern" placeholder="Inserisci il nome del tuo pub">
                 </div>
                 
                 <div class="form-group">
-                    <label for="pubSlogan">Slogan</label>
-                    <input type="text" id="pubSlogan" value="Birre artigianali e atmosfera unica">
+                    <label for="pubSlogan">💬 Slogan/Tagline</label>
+                    <input type="text" id="pubSlogan" value="Birre artigianali e atmosfera unica" placeholder="Uno slogan accattivante">
                 </div>
                 
+                <!-- Design Options -->
+                <h3 style="color: var(--primary); margin-top: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">🎨 Design</h3>
+                
                 <div class="form-group">
-                    <label for="primaryColor">Colore Principale</label>
+                    <label>Tema Colori Principale</label>
                     <div class="color-options">
-                        <div class="color-option active" style="background: #8B4513;" data-color="#8B4513"></div>
-                        <div class="color-option" style="background: #D2691E;" data-color="#D2691E"></div>
-                        <div class="color-option" style="background: #A52A2A;" data-color="#A52A2A"></div>
-                        <div class="color-option" style="background: #CD853F;" data-color="#CD853F"></div>
+                        <div class="color-option active" style="background: #8B4513;" data-color="#8B4513" data-type="primary"></div>
+                        <div class="color-option" style="background: #A52A2A;" data-color="#A52A2A" data-type="primary"></div>
+                        <div class="color-option" style="background: #654321;" data-color="#654321" data-type="primary"></div>
+                        <div class="color-option" style="background: #5D4037;" data-color="#5D4037" data-type="primary"></div>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="accentColor">Colore Accento</label>
+                    <label>Colore Accento</label>
                     <div class="color-options">
-                        <div class="color-option active" style="background: #FFD700;" data-color="#FFD700"></div>
-                        <div class="color-option" style="background: #FFA500;" data-color="#FFA500"></div>
-                        <div class="color-option" style="background: #FF6347;" data-color="#FF6347"></div>
-                        <div class="color-option" style="background: #32CD32;" data-color="#32CD32"></div>
+                        <div class="color-option active" style="background: #FFD700;" data-color="#FFD700" data-type="accent"></div>
+                        <div class="color-option" style="background: #FFA500;" data-color="#FFA500" data-type="accent"></div>
+                        <div class="color-option" style="background: #FF6B35;" data-color="#FF6B35" data-type="accent"></div>
+                        <div class="color-option" style="background: #32CD32;" data-color="#32CD32" data-type="accent"></div>
                     </div>
                 </div>
                 
-                <h3 style="color: var(--primary); margin-top: 2rem;">Menu Birre</h3>
+                <div class="form-group">
+                    <label>Template Layout</label>
+                    <div class="template-options">
+                        <div class="template-option active" data-template="classic">
+                            <div style="font-size: 2rem;">🏴‍☠️</div>
+                            <div>Classico</div>
+                        </div>
+                        <div class="template-option" data-template="modern">
+                            <div style="font-size: 2rem;">🚀</div>
+                            <div>Moderno</div>
+                        </div>
+                        <div class="template-option" data-template="elegant">
+                            <div style="font-size: 2rem;">🎩</div>
+                            <div>Elegante</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu Configuration -->
+                <h3 style="color: var(--primary); margin-top: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">🍺 Menu Birre</h3>
                 
                 <div class="form-group">
                     <label for="beer1">Birra 1</label>
-                    <input type="text" id="beer1" value="IPA Artigianale - €5,00">
+                    <input type="text" id="beer1" value="IPA Artigianale - €5,00" placeholder="Nome birra - Prezzo">
                 </div>
                 
                 <div class="form-group">
                     <label for="beer2">Birra 2</label>
-                    <input type="text" id="beer2" value="Lager Chiara - €4,00">
+                    <input type="text" id="beer2" value="Lager Chiara - €4,00" placeholder="Nome birra - Prezzo">
                 </div>
                 
                 <div class="form-group">
                     <label for="beer3">Birra 3</label>
-                    <input type="text" id="beer3" value="Stout Scura - €6,00">
+                    <input type="text" id="beer3" value="Stout Scura - €6,00" placeholder="Nome birra - Prezzo">
                 </div>
                 
                 <div class="form-group">
-                    <label for="whatsapp">Numero WhatsApp</label>
-                    <input type="text" id="whatsapp" value="+39 123 456 7890">
+                    <label for="beer4">Birra 4</label>
+                    <input type="text" id="beer4" value="Weissbier - €5,50" placeholder="Nome birra - Prezzo">
                 </div>
                 
-                <button type="submit" class="btn-save">SALVA E GENERA SITO</button>
+                <!-- Contact Info -->
+                <h3 style="color: var(--primary); margin-top: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">📱 Contatti</h3>
+                
+                <div class="form-group">
+                    <label for="whatsapp">Numero WhatsApp</label>
+                    <input type="text" id="whatsapp" value="+39 123 456 7890" placeholder="+39 123 456 7890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Indirizzo</label>
+                    <input type="text" id="address" value="Via Roma 123, Milano" placeholder="Indirizzo del tuo pub">
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours">Orari di Apertura</label>
+                    <input type="text" id="hours" value="Lun-Dom: 18:00 - 02:00" placeholder="Orari di apertura">
+                </div>
+                
+                <button type="submit" class="btn-save">💾 SALVA E GENERA SITO</button>
             </form>
+            
+            <div class="arturo-assistant">
+                <h4>🤖 Hai bisogno di aiuto con la personalizzazione?</h4>
+                <p>Arturo può suggerirti le combinazioni migliori per il tuo pub!</p>
+                <button class="btn-save" style="background: white; color: var(--dark); margin-top: 1rem;" onclick="document.getElementById('chatbotLauncher').click()">
+                    💬 CHIEDI A ARTURO
+                </button>
+            </div>
         </div>
         
+        <!-- Preview Panel -->
         <div class="preview-panel">
-            <h3 style="color: var(--accent); text-align: center;">Anteprima Live</h3>
+            <h3 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">Anteprima Live</h3>
+            <p style="text-align: center; margin-bottom: 1.5rem; opacity: 0.8;">Come vedranno i tuoi clienti:</p>
             
-            <div class="preview-header">
+            <div class="preview-header" id="previewHeader">
                 <h2 id="previewName" style="margin: 0; color: var(--accent);">The Old Tavern</h2>
-                <p id="previewSlogan" style="margin: 0; opacity: 0.9;">Birre artigianali e atmosfera unica</p>
+                <p id="previewSlogan" style="margin: 0.5rem 0 0 0; opacity: 0.9;">Birre artigianali e atmosfera unica</p>
             </div>
             
-            <h4 style="color: var(--accent);">Le Nostre Birre:</h4>
+            <h4 style="color: var(--accent); margin-bottom: 1rem;">🍻 Le Nostre Birre:</h4>
             
             <div class="preview-beer" id="previewBeer1">IPA Artigianale - €5,00</div>
             <div class="preview-beer" id="previewBeer2">Lager Chiara - €4,00</div>
             <div class="preview-beer" id="previewBeer3">Stout Scura - €6,00</div>
+            <div class="preview-beer" id="previewBeer4">Weissbier - €5,50</div>
             
-            <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px;">
-                <p style="margin: 0;">📱 Ordina su WhatsApp:</p>
-                <strong id="previewWhatsapp" style="color: var(--accent);">+39 123 456 7890</strong>
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                <p style="margin: 0 0 0.5rem 0; text-align: center;">📱 Ordina su WhatsApp:</p>
+                <p style="margin: 0; text-align: center; font-size: 1.1rem;">
+                    <strong id="previewWhatsapp" style="color: var(--accent);">+39 123 456 7890</strong>
+                </p>
+            </div>
+            
+            <div style="margin-top: 1rem; font-size: 0.8rem; text-align: center; opacity: 0.7;">
+                <p id="previewAddress" style="margin: 0.2rem 0;">Via Roma 123, Milano</p>
+                <p id="previewHours" style="margin: 0.2rem 0;">Lun-Dom: 18:00 - 02:00</p>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.2); border-radius: 8px;">
+                <p style="margin: 0; text-align: center; font-size: 0.9rem;">
+                    <strong>🎯 Suggerimento:</strong><br>
+                    I colori caldi aumentano la percezione di accoglienza del 25%!
+                </p>
             </div>
         </div>
     </div>
 
-    <script>
-        // Aggiorna anteprima in tempo reale
-        const form = document.getElementById('customizeForm');
-        const inputs = form.querySelectorAll('input');
+    <!-- Chatbot Launcher -->
+    <div class="chatbot-launcher" id="chatbotLauncher">
+        💬
+    </div>
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <div class="chatbot-avatar">A</div>
+                <div>
+                    <strong>Arturo</strong>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Esperto di Design Pub</div>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">×</button>
+        </div>
         
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                const targetId = 'preview' + this.id.charAt(0).toUpperCase() + this.id.slice(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.textContent = this.value;
-                }
-            });
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <strong>🎨 Ciao! Sono Arturo, il tuo esperto di design pub!</strong><br><br>
+                Vedo che stai personalizzando il tuo sito. Posso aiutarti con:<br>
+                • Combinazioni colori perfette<br>
+                • Layout ottimali<br>
+                • Consigli menu birre<br>
+                • Ottimizzazione mobile<br><br>
+                Cosa ti serve? 😊
+            </div>
+            
+            <div class="quick-replies">
+                <div class="quick-reply" onclick="sendQuickReply('Quali colori consigli?')">🎨 Consigli colori</div>
+                <div class="quick-reply" onclick="sendQuickReply('Come organizzare il menu?')">🍺 Menu birre</div>
+                <div class="quick-reply" onclick="sendQuickReply('Layout migliore?')">📱 Layout</div>
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <span>Arturo sta scrivendo</span>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Chiedimi consigli di design...">
+            <button class="chatbot-send" id="chatbotSend">➤</button>
+        </div>
+    </div>
+
+    <script>
+        // Real-time Preview Updates
+        document.getElementById('customizeForm').addEventListener('input', function(e) {
+            const field = e.target.id;
+            const value = e.target.value;
+            
+            const previewMap = {
+                'pubName': 'previewName',
+                'pubSlogan': 'previewSlogan',
+                'whatsapp': 'previewWhatsapp',
+                'address': 'previewAddress',
+                'hours': 'previewHours',
+                'beer1': 'previewBeer1',
+                'beer2': 'previewBeer2',
+                'beer3': 'previewBeer3',
+                'beer4': 'previewBeer4'
+            };
+            
+            if (previewMap[field]) {
+                document.getElementById(previewMap[field]).textContent = value || 
+                    (field.startsWith('beer') ? 'Birra ' + field.slice(-1) + ' - €0,00' : 
+                     field === 'pubName' ? 'The Old Tavern' :
+                     field === 'pubSlogan' ? 'Birre artigianali e atmosfera unica' :
+                     field === 'whatsapp' ? '+39 123 456 7890' :
+                     field === 'address' ? 'Via Roma 123, Milano' :
+                     field === 'hours' ? 'Lun-Dom: 18:00 - 02:00' : '');
+            }
         });
 
-        // Gestione colori
-        const colorOptions = document.querySelectorAll('.color-option');
-        colorOptions.forEach(option => {
+        // Color Options
+        document.querySelectorAll('.color-option').forEach(option => {
             option.addEventListener('click', function() {
-                // Rimuovi active da tutti i fratelli
+                const colorType = this.getAttribute('data-type');
+                const colorValue = this.getAttribute('data-color');
+                
+                // Remove active class from siblings
                 this.parentElement.querySelectorAll('.color-option').forEach(opt => {
                     opt.classList.remove('active');
                 });
-                // Aggiungi active a questo
+                
+                // Add active class to clicked option
                 this.classList.add('active');
                 
-                // Cambia colore in anteprima
-                const colorType = this.parentElement.previousElementSibling.textContent;
-                const colorValue = this.getAttribute('data-color');
-                
-                if (colorType.includes('Principale')) {
-                    document.querySelector('.preview-header').style.backgroundColor = colorValue;
-                } else if (colorType.includes('Accento')) {
+                // Update preview
+                if (colorType === 'primary') {
+                    document.getElementById('previewHeader').style.backgroundColor = colorValue;
+                } else if (colorType === 'accent') {
                     document.querySelectorAll('.preview-beer').forEach(beer => {
                         beer.style.borderLeftColor = colorValue;
                     });
-                    document.querySelectorAll('h2, h3, h4').forEach(heading => {
-                        if (heading.style.color === 'rgb(255, 215, 0)' || heading.id.includes('preview')) {
-                            heading.style.color = colorValue;
-                        }
+                    document.querySelectorAll('#previewName, #previewWhatsapp').forEach(element => {
+                        element.style.color = colorValue;
                     });
                 }
             });
         });
 
-        // Salva configurazione
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Configurazione salvata! Il tuo sito pub personalizzato è pronto.\n\nOra puoi procedere con il pagamento per attivarlo.');
+        // Template Options
+        document.querySelectorAll('.template-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const template = this.getAttribute('data-template');
+                
+                // Remove active class from siblings
+                this.parentElement.querySelectorAll('.template-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Update preview based on template
+                const previewHeader = document.getElementById('previewHeader');
+                if (template === 'modern') {
+                    previewHeader.style.background = 'linear-gradient(135deg, #2C1810, #8B4513)';
+                } else if (template === 'elegant') {
+                    previewHeader.style.background = 'linear-gradient(135deg, #5D4037, #8B4513)';
+                } else {
+                    previewHeader.style.backgroundColor = '#8B4513';
+                }
+            });
         });
+
+        // Form Submission
+        document.getElementById('customizeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pubName = document.getElementById('pubName').value;
+            alert(`🎉 Perfetto ${pubName}! Le tue personalizzazioni sono state salvate.\n\nIl sito aggiornato sarà pronto entro poche ore!`);
+        });
+
+        // Chatbot Elements
+        const chatbotLauncher = document.getElementById('chatbotLauncher');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Toggle Chatbot
+        chatbotLauncher.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        // Send Message
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                chatbotInput.value = '';
+                
+                typingIndicator.style.display = 'flex';
+                
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                    arturoResponse(message);
+                }, 1500);
+            }
+        }
+
+        // Quick Reply
+        function sendQuickReply(reply) {
+            addMessage(reply, 'user');
+            
+            typingIndicator.style.display = 'flex';
+            
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                arturoResponse(reply);
+            }, 1000);
+        }
+
+        // Add Message to Chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Arturo's Design Advice
+        function arturoResponse(userMessage) {
+            let response = '';
+            
+            if (userMessage.includes('colori') || userMessage.includes('tema')) {
+                response = "🎨 **I MIEI CONSIGLI COLORE**:\n\n• 🏴‍☠️ **Classico**: Marrone legno (#8B4513) + Oro (#FFD700) - Perfetto per pub tradizionali\n• 🔥 **Moderno**: Borgogna (#A52A2A) + Arancio (#FF6B35) - Per locali giovani\n• 🎩 **Elegante**: Cioccolato (#5D4037) + Verde bottiglia (#32CD32) - Per pub ricercati\n\n💡 I colori caldi aumentano del 30% la percezione di accoglienza!";
+            } else if (userMessage.includes('menu') || userMessage.includes('birre')) {
+                response = "🍺 **ORGANIZZAZIONE MENU IDEALE**:\n\n1. 🥇 **APRI MENU**: Birra più popolare\n2. 🎯 **SPECIALITÀ**: La tua birra unica\n3. 💰 **ACCESSIBILE**: Birra entry-level\n4. 🏆 **PREMIUM**: Birra di alta gamma\n5. 🌈 **SORPRESA**: Birra stagionale/limitata\n\n📊 Con questo ordine aumenti le vendite del 25%!";
+            } else if (userMessage.includes('layout') || userMessage.includes('design')) {
+                response = "📱 **LAYOUT OTTIMALE**:\n\n• 🏠 Header con nome pub grande\n• 🎯 Slogan accattivante sotto\n• 🍺 Menu birre in evidenza\n• 📱 WhatsApp in primo piano\n• 📍 Info contatti in fondo\n\n🚀 Questo layout converte il 15% in più di visitatori in ordini!";
+            } else if (userMessage.includes('mobile') || userMessage.includes('cellulare')) {
+                response = "📱 **OTTIMIZZAZIONE MOBILE**:\n\n• Pulsanti grandi per dita\n• Menu a scorrimento verticale\n• WhatsApp fisso in basso\n• Caricamento ultra-rapido\n• Immagini compresse\n\n📊 Il 70% degli ordini arriva da mobile!";
+            } else {
+                response = "🎨 Ciao! Sono Arturo, il tuo esperto di design pub! Posso aiutarti con:\n• Combinazioni colori perfette\n• Layout ottimali per conversioni\n• Organizzazione menu birre\n• Ottimizzazione mobile\n\nCosa ti serve? 😊";
+            }
+            
+            addMessage(response, 'bot');
+            
+            // Add relevant quick replies
+            setTimeout(() => {
+                const quickRepliesDiv = document.createElement('div');
+                quickRepliesDiv.className = 'quick-replies';
+                
+                if (userMessage.includes('colori')) {
+                    quickRepliesDiv.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Applica tema classico')">🎨 Tema Classico</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Voglio tema moderno')">🔥 Tema Moderno</div>
+                    `;
+                } else if (userMessage.includes('menu')) {
+                    quickRepliesDiv.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Riordina il mio menu')">📊 Riordina Menu</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Consigli prezzi birre')">💰 Prezzi</div>
+                    `;
+                } else {
+                    quickRepliesDiv.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Quali colori consigli?')">🎨 Colori</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Layout migliore?')">📱 Layout</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Menu birre ottimale')">🍺 Menu</div>
+                    `;
+                }
+                
+                chatbotMessages.appendChild(quickRepliesDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }, 100);
+        }
+
+        // Event Listeners
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Auto-design suggestion
+        setTimeout(() => {
+            if (!localStorage.getItem('design_suggested')) {
+                addMessage("💡 **Suggerimento di Arturo**: Vedo che stai usando colori classici. Per un pub tradizionale come il tuo, consiglio il tema 'Classico' con marrone legno e oro - aumenta la percezione di autenticità del 40%! Vuoi che te lo mostro?", 'bot');
+                localStorage.setItem('design_suggested', 'true');
+                
+                setTimeout(() => {
+                    const quickRepliesDiv = document.createElement('div');
+                    quickRepliesDiv.className = 'quick-replies';
+                    quickRepliesDiv.innerHTML = `
+                        <div class="quick-reply" onclick="sendQuickReply('Si, applica tema classico')">🎨 Si, applica</div>
+                        <div class="quick-reply" onclick="sendQuickReply('Mostrami altre opzioni')">🔍 Altre opzioni</div>
+                    `;
+                    chatbotMessages.appendChild(quickRepliesDiv);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 500);
+            }
+        }, 20000);
     </script>
 </body>
 </html>
