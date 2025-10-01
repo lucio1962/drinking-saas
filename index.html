@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drinking SaaS - Crea il Sito del Tuo Pub</title>
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --dark: #2C1810;
+            --light: #F5F5DC;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.9));
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-demo {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-demo:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .demo-section {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            max-width: 300px;
+            text-align: center;
+        }
+        
+        .card.popular {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            position: relative;
+        }
+        
+        .card.popular::before {
+            content: "PIÙ SCELTO";
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 15px;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .price {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .features {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">DRINKING SaaS</div>
+        <nav>
+            <a href="#demo" style="color: white; margin: 0 15px; text-decoration: none;">Vedi Demo</a>
+            <a href="#prezzi" style="color: white; margin: 0 15px; text-decoration: none;">Prezzi</a>
+            <a href="#funziona" style="color: white; margin: 0 15px; text-decoration: none;">Come Funziona</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Il Sito del Tuo Pub, Pronto in 5 Minuti</h1>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">Lo stesso sistema del nostro pub demo. Ordini WhatsApp, menu birre, design professionale.</p>
+        
+        <div>
+            <a href="crea-gratis.html" class="btn-primary">Crea Gratis</a>
+            <a href="crea-premium.html" class="btn-primary" style="background: var(--accent); color: var(--dark);">
+                Sito Premium - €9,90
+            </a>
+        </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+        <h2 style="margin-bottom: 1rem;">🚀 Prova Subito la Demo Funzionante</h2>
+        <p style="margin-bottom: 2rem; font-size: 1.1rem;">Guarda come funziona il sistema di ordini con il nostro pub esempio:</p>
+        <a href="https://lucio1962.github.io/drinking-pub-2024/" 
+           target="_blank" 
+           class="btn-demo">
+           🍺 APRI IL PUB DEMO
+        </a>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Puoi fare ordini reali tramite WhatsApp e testare tutte le funzioni!
+        </p>
+    </section>
+
+    <section id="funziona" class="features">
+        <h2>Come Funziona Drinking SaaS</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>🚀 1. Scegli il Piano</h3>
+                <p>Gratis o Premium a €9,90 - Prova la demo prima di decidere</p>
+            </div>
+            <div class="feature-item">
+                <h3>🎨 2. Personalizza</h3>
+                <p>Inserisci nome pub, menu birre e numero WhatsApp</p>
+            </div>
+            <div class="feature-item">
+                <h3>📱 3. Ricevi il Sito</h3>
+                <p>Il tuo pub online con lo stesso sistema della demo</p>
+            </div>
+            <div class="feature-item">
+                <h3>🍺 4. Inizia a Vendere</h3>
+                <p>Ordini diretti sul tuo WhatsApp come nel pub demo</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="prezzi" style="padding: 3rem 2rem; text-align: center; background: var(--light);">
+        <h2 style="margin-bottom: 2rem;">Scegli il Piano Perfetto per il Tuo Pub</h2>
+        
+        <div class="pricing-cards">
+            <div class="card">
+                <h3>GRATIS</h3>
+                <div class="price">€0</div>
+                <ul style="text-align: left; list-style: none; padding: 0;">
+                    <li style="margin: 10px 0;">✓ Sito base per pub</li>
+                    <li style="margin: 10px 0;">✓ Menu birre semplice</li>
+                    <li style="margin: 10px 0;">✓ Ordini WhatsApp</li>
+                    <li style="margin: 10px 0;">✓ Design standard</li>
+                </ul>
+                <a href="crea-gratis.html" class="btn-primary">CREA GRATIS</a>
+            </div>
+            
+            <div class="card popular">
+                <h3>PREMIUM</h3>
+                <div class="price">€9,90</div>
+                <ul style="text-align: left; list-style: none; padding: 0;">
+                    <li style="margin: 10px 0;">✓ Tutto del Gratis</li>
+                    <li style="margin: 10px 0;">✓ Design personalizzato</li>
+                    <li style="margin: 10px 0;">✓ Menu birre completo</li>
+                    <li style="margin: 10px 0;">✓ Assistenza prioritaria</li>
+                    <li style="margin: 10px 0;">✓ Dominio personalizzato</li>
+                </ul>
+                <a href="crea-premium.html" class="btn-primary" style="background: var(--accent); color: var(--dark);">
+                    SCELGO PREMIUM
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Soluzioni digitali per pub e birrerie</p>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">📞 Contattaci: info@drinking-saas.it</p>
+    </footer>
+</body>
+</html>
