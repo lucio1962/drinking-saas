@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clona il Sito Demo - Crea il Tuo Sito Pub - Drinking SaaS</title>
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --dark: #2C1810;
+            --light: #F5F5DC;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-nav {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .btn-nav:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .price-tag {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .demo-preview {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+        }
+        
+        .preview-container {
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 500px;
+            margin-bottom: 2rem;
+        }
+        
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(0.8);
+            transform-origin: top left;
+            width: 125%;
+            height: 125%;
+        }
+        
+        .clone-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-clone {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 18px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .btn-clone:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .beer-examples {
+            background: var(--dark);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .beer-example {
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .clone-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .clone-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: var(--light);
+            padding: 0 1rem;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 0.5rem;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .preview-container {
+                height: 400px;
+            }
+            
+            .preview-iframe {
+                transform: scale(0.6);
+                width: 166.67%;
+                height: 166.67%;
+            }
+            
+            .clone-steps {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .clone-steps::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">DRINKING SaaS</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="btn-nav">← Torna alla Home</a>
+            <a href="crea-ai.html" class="btn-nav">🤖 Versione AI</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>🚀 Clona il Sito Demo - Crea il Tuo Sito Pub</h1>
+            <p>Ottieni un sito IDENTICO al nostro demo, ma con i tuoi contenuti</p>
+            <div class="price-tag">€9,90</div>
+            <p>Setup immediato • Design professionale • Zero competenze tecniche</p>
+        </div>
+    </section>
+
+    <!-- Demo Preview -->
+    <section class="container">
+        <div class="demo-preview">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">🎯 Il Tuo Sito Avrà Questo Design</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Stessa struttura, stessi colori, stesso layout - Solo i contenuti cambiano</p>
+            
+            <div class="preview-container">
+                <iframe class="preview-iframe" 
+                        src="https://lucio1962.github.io/drinking-pub-2024/"
+                        title="Demo Site Preview">
+                </iframe>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="https://lucio1962.github.io/drinking-pub-2024/" 
+                   target="_blank" 
+                   class="btn-primary">
+                   🍺 Prova il Demo Live
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="container">
+        <div class="clone-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Personalizza</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Paga €9,90</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Scarica Sito</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Online Subito</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clone Form -->
+    <section class="container">
+        <div class="clone-form">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">🎨 Personalizza il Tuo Sito</h2>
+            
+            <form id="cloneForm">
+                <div class="form-group">
+                    <label for="pubName">🏠 Nome del Tuo Pub *</label>
+                    <input type="text" id="pubName" required placeholder="Es: Il Mio Pub Fantastico">
+                    <small style="color: #666;">Questo sarà il nome principale del tuo sito</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pubSlogan">💬 Slogan o Descrizione</label>
+                    <input type="text" id="pubSlogan" placeholder="Es: Le migliori birre artigianali della città">
+                    <small style="color: #666;">Una breve descrizione che appare sotto il nome</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsappNumber">📱 Numero WhatsApp per Ordini *</label>
+                    <input type="tel" id="whatsappNumber" required placeholder="Es: +39 123 456 7890">
+                    <small style="color: #666;">Formato internazionale, i clienti ordineranno qui</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pubAddress">📍 Indirizzo del Pub (Opzionale)</label>
+                    <input type="text" id="pubAddress" placeholder="Es: Via Roma 123, Milano">
+                </div>
+                
+                <div class="form-group">
+                    <label for="beerList">🍺 Lista delle Tue Birre *</label>
+                    <textarea id="beerList" rows="4" required placeholder="Inserisci ogni birra su una nuova linea, con prezzo
+Es: 
+IPA Artigianale - €5,00
+Lager Chiara - €4,00
+Stout Scura - €6,00
+Weissbier - €5,50"></textarea>
+                    <small style="color: #666;">Una birra per linea, formato: Nome - Prezzo</small>
+                </div>
+                
+                <div class="beer-examples">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">💡 Esempi di Birre Popolari:</h4>
+                    <div class="beer-example">IPA India Pale Ale - €6,00</div>
+                    <div class="beer-example">Lager Pilsner - €5,00</div>
+                    <div class="beer-example">Stout Imperial - €7,50</div>
+                    <div class="beer-example">Weissbier Tedesca - €5,50</div>
+                    <div class="beer-example">APA American Pale Ale - €6,50</div>
+                </div>
+                
+                <button type="button" onclick="generateCloneSite()" class="btn-clone">
+                    🚀 CREA IL MIO SITO CLONE - €9,90
+                </button>
+                
+                <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    ✅ Soddisfatto o rimborsato entro 30 giorni<br>
+                    📧 Supporto via email incluso
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <h2 style="margin-bottom: 1rem;">🎉 SITO CREATO CON SUCCESSO!</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Il file <strong id="fileName">il-tuo-pub.html</strong> è stato scaricato</p>
+        <p>Ora puoi caricare il file su qualsiasi hosting e il tuo sito sarà live!</p>
+        <div style="margin-top: 2rem;">
+            <button onclick="showSetupInstructions()" class="btn-primary" style="background: white; color: #4CAF50;">
+                📖 Istruzioni Setup
+            </button>
+            <button onclick="resetForm()" class="btn-primary" style="background: white; color: #4CAF50; margin-left: 1rem;">
+                🏠 Crea Altro Sito
+            </button>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="container">
+        <h2 style="text-align: center; color: var(--primary); margin: 3rem 0 1rem;">✅ Cosa Ottieni con il Clone</h2>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <h3>Design Professionale</h3>
+                <p>Stesso design del demo, già testato e ottimizzato</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Perfect</h3>
+                <p>Responsive su tutti i dispositivi</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">🍺</div>
+                <h3>Menu Birre</h3>
+                <p>Sistema ordinazione già integrato</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>Setup Immediato</h3>
+                <p>Sito pronto in 2 minuti</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin: 0; font-size: 1.1rem;"><strong>Drinking SaaS</strong> - Soluzioni per Pub e Birrerie</p>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.8;">📧 info@drinking-saas.it | 📞 Supporto clienti</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funzione principale per generare il sito clone
+        function generateCloneSite() {
+            // Raccogli dati dal form
+            const userData = {
+                pubName: document.getElementById('pubName').value.trim(),
+                slogan: document.getElementById('pubSlogan').value.trim() || 'Birre artigianali di qualità',
+                whatsapp: document.getElementById('whatsappNumber').value.trim(),
+                address: document.getElementById('pubAddress').value.trim() || '',
+                beers: document.getElementById('beerList').value.split('\n').filter(line => line.trim()).map(line => line.trim())
+            };
+            
+            // Validazione
+            if (!userData.pubName || !userData.whatsapp || userData.beers.length === 0) {
+                alert('❌ Compila tutti i campi obbligatori: Nome pub, WhatsApp e almeno una birra');
+                return;
+            }
+            
+            // Simula pagamento (in produzione qui andrebbe Stripe/PayPal)
+            if (!confirm(`CONFERMA ACQUISTO\n\n🏠 Pub: ${userData.pubName}\n📱 WhatsApp: ${userData.whatsapp}\n🍺 Birre: ${userData.beers.length}\n💰 Prezzo: €9,90\n\nProcedere con il pagamento?`)) {
+                return;
+            }
+            
+            // Genera e scarica il sito
+            const htmlContent = generateClonedHTML(userData);
+            downloadHTMLFile(htmlContent, userData.pubName);
+            
+            // Mostra messaggio di successo
+            document.getElementById('fileName').textContent = `${userData.pubName.toLowerCase().replace(/\s+/g, '-')}.html`;
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Genera HTML clonato dal tuo sito demo
+        function generateClonedHTML(userData) {
+            return `<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${userData.pubName} - Sito Ufficiale</title>
+    <style>
+        /* STILI BASATI SUL TUO SITO DRINKING-PUB-2024 */
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-dark: #2C1810;
+            --background-light: #F5F5DC;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.9)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .menu-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+        
+        .menu-category h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .beer-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .beer-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .beer-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .address-info {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 300px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER - Stesso design del demo -->
+    <header class="header">
+        <div class="logo">${userData.pubName}</div>
+        <nav class="nav-links">
+            <a href="#birre">Le Birre</a>
+            <a href="#ordina">Ordina</a>
+            <a href="#contatti">Contatti</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION - Stesso design del demo -->
+    <section class="hero">
+        <h1>${userData.pubName}</h1>
+        <p>${userData.slogan}</p>
+        <a href="#birre" class="btn-primary">Scopri le Nostre Birre</a>
+    </section>
+
+    <!-- MENU SECTION - Stesso design del demo -->
+    <section class="menu-section" id="birre">
+        <div class="menu-category">
+            <h3>🍺 Le Nostre Birre</h3>
+            ${userData.beers.map(beer => `
+                <div class="beer-item">
+                    <div class="beer-name">${beer}</div>
+                    <div class="beer-description">Birra artigianale preparata con ingredienti di alta qualità</div>
+                </div>
+            `).join('')}
+        </div>
+    </section>
+
+    <!-- WHATSAPP SECTION - Stesso design del demo -->
+    <section class="whatsapp-section" id="ordina">
+        <h2>Ordina Ora su WhatsApp</h2>
+        <p>Consegna a domicilio o ritiro in pub</p>
+        
+        <a href="https://wa.me/${userData.whatsapp}?text=Ciao ${userData.pubName}! Vorrei ordinare delle birre" 
+           class="whatsapp-btn" target="_blank">
+            📱 Ordina su WhatsApp
+        </a>
+        
+        <p><strong>${userData.whatsapp}</strong></p>
+        
+        ${userData.address ? `
+            <div class="address-info">
+                <strong>📍 Ci trovi qui:</strong><br>
+                ${userData.address}
+            </div>
+        ` : ''}
+    </section>
+
+    <!-- FOOTER - Stesso design del demo -->
+    <footer class="footer" id="contatti">
+        <p><strong>${userData.pubName}</strong></p>
+        <p>${userData.slogan}</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">&copy; ${new Date().getFullYear()} ${userData.pubName} - Tutti i diritti riservati</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling per navigazione
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Ottimizza click WhatsApp per mobile
+        document.querySelector('.whatsapp-btn').addEventListener('click', function(e) {
+            // Su mobile, apri direttamente l'app WhatsApp
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Lascia che il link href normale gestisca l'apertura
+                return true;
+            }
+        });
+        
+        console.log('Sito pub generato con Drinking SaaS - drinking-saas.it');
+    </script>
+</body>
+</html>`;
+        }
+        
+        // Funzione per scaricare il file HTML
+        function downloadHTMLFile(content, pubName) {
+            const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = \`\${pubName.toLowerCase().replace(/\\s+/g, '-')}.html\`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Funzioni di supporto
+        function showSetupInstructions() {
+            const instructions = \`
+📖 **ISTRUZIONI SETUP SITO PUB**
+
+1. **HOSTING GRATIS** (Opzione facile):
+   • Vai su Netlify.com o Vercel.com
+   • Trascina il file HTML nella zona di upload
+   • Il tuo sito sarà live in 2 minuti!
+
+2. **HOSTING A PAGAMENTO** (Opzione professionale):
+   • Acquista hosting (SiteGround, Aruba, etc.)
+   • Carica il file via FTP o file manager
+   • Il sito è online!
+
+3. **DOMINIO PERSONALE** (Opzionale):
+   • Compra un dominio (IlTuoPub.it)
+   • Collegalo al tuo hosting
+   • Professionalità al 100%
+
+💡 **SUGGERIMENTI**:
+• Aggiorna regolarmente la lista birre
+• Rispondi sempre su WhatsApp
+• Condividi il link sui social
+
+Hai bisogno di aiuto? info@drinking-saas.it
+\`;
+            alert(instructions);
+        }
+        
+        function resetForm() {
+            document.getElementById('cloneForm').reset();
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+        
+        // Auto-fill con dati di esempio per testing
+        function fillExampleData() {
+            document.getElementById('pubName').value = 'Il Mio Pub Fantastico';
+            document.getElementById('pubSlogan').value = 'Le migliori birre artigianali della città';
+            document.getElementById('whatsappNumber').value = '+39 123 456 7890';
+            document.getElementById('pubAddress').value = 'Via Roma 123, Milano';
+            document.getElementById('beerList').value = 'IPA Artigianale - €5,00\\nLager Chiara - €4,00\\nStout Scura - €6,00\\nWeissbier - €5,50';
+        }
+        
+        // Rimuovi questa riga in produzione - solo per testing
+        // fillExampleData();
+    </script>
+</body>
+</html>
